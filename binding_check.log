@@ -1,0 +1,59 @@
+[FAIL] UIManager.Instance is null
+[FAIL] ServiceLocator.Instance is null
+[OK] LoginCanvas
+[OK] LoginPanel + LoginPanel
+  [OK] TitleText
+  [OK] UsernameInput
+  [OK] PasswordInput
+  [OK] LoginButton
+  [OK] RegisterButton
+  [OK] OfflineButton
+  [OK] MessageText
+[OK] HomeMenuPanel + HomeMenuPanel
+  [OK] HomeTitleText
+  [OK] BtnStudyVideo
+  [OK] BtnSkillTraining
+  [OK] BtnSettings
+  [OK] BtnHelp
+[OK] SettingsPanel + SettingsPanel
+  [OK] SettingsTitle
+  [OK] MasterVolumeLabel
+  [OK] MasterVolumeSlider
+  [OK] VoiceVolumeLabel
+  [OK] VoiceVolumeSlider
+  [OK] BGMVolumeLabel
+  [OK] BGMVolumeSlider
+  [OK] ResolutionLabel
+  [OK] ResolutionDropdown
+  [OK] ResetDataButton
+  [OK] BackButton
+[OK] HelpPanel + HelpPanel
+  [OK] HelpTitle
+  [OK] KeyboardHelp
+  [OK] VRHelp
+  [OK] HelpBackButton
+[OK] StudyVideoPanel + StudyVideoPanel
+  [OK] VideoRenderImage
+  [OK] VideoControlBar
+[OK] SceneSelectPanel + SceneSelectPanel
+  [OK] SceneSelectTitle
+  [OK] SceneCard_Subway
+  [OK] SceneCard_Hospital
+  [OK] SceneBackButton
+[OK] SkillSelectPanel + SkillSelectPanel
+  [OK] SkillSelectTitle
+  [OK] SkillCard_CPR
+  [OK] SkillCard_AED
+  [OK] SkillBackButton
+[OK] ScoreReportPanel + ScoreReportPanel
+  [OK] ReportTitle
+  [OK] TotalScoreText
+  [OK] ScoreDetailPanel
+  [OK] AdviceTitle
+  [OK] AdviceContent
+  [OK] RetryButton
+  [OK] BackToMenuButton
+
+--- UIManager Panel References ---
+[OK] EventSystem on LoginCanvas
+[OK] StandaloneInputModule on LoginCanvas
