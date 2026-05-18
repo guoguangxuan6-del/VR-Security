@@ -195,7 +195,9 @@
       "Bash(mv Demonstration/__TRACKED_VAR__.meta Subway/Lighting/__TRACKED_VAR__.meta)",
       "Bash(mv \"DemonstrationSettings.lighting\" \"Subway/Lighting/DemonstrationSettings.lighting\")",
       "Bash(mv \"DemonstrationSettings.lighting.meta\" \"Subway/Lighting/DemonstrationSettings.lighting.meta\")",
-      "Bash(rmdir \"Demonstration\")"
+      "Bash(rmdir \"Demonstration\")",
+      "Bash(cp ../CLAUDE.md ./CLAUDE.md)",
+      "Bash(cp ../UI指导.md ./UI指导.md)"
     ]
   }
 }
