@@ -61,13 +61,13 @@ public class LoginPanel : MonoBehaviour
 
         if (loginService.Login(username, password))
         {
-            messageText.text = "Login successful";
+            messageText.text = "登录成功";
             messageText.color = Color.green;
             UIManager.Instance.SwitchState(GameState.MainMenu);
         }
         else
         {
-            messageText.text = "Invalid username or password";
+            messageText.text = "用户名或密码无效";
             messageText.color = Color.red;
         }
     }
@@ -79,26 +79,26 @@ public class LoginPanel : MonoBehaviour
 
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
-            messageText.text = "Enter username and password";
+            messageText.text = "请输入用户名和密码";
             messageText.color = Color.red;
             return;
         }
 
         if (password.Length < 6)
         {
-            messageText.text = "Password must be at least 6 characters";
+            messageText.text = "密码必须至少包含6个字符";
             messageText.color = Color.red;
             return;
         }
 
         if (loginService.Register(username, password))
         {
-            messageText.text = "Registration successful, please login";
+            messageText.text = "注册成功，请登录";
             messageText.color = Color.green;
         }
         else
         {
-            messageText.text = "Username already exists";
+            messageText.text = "用户名已存在";
             messageText.color = Color.red;
         }
     }
