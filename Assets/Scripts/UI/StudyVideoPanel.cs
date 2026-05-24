@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class StudyVideoPanel : MonoBehaviour
+public class StudyVideoPanel : BasePanel
 {
     [Header("Video")]
     [SerializeField] private VideoPlayer videoPlayer;
@@ -141,6 +141,6 @@ public class StudyVideoPanel : MonoBehaviour
     {
         if (videoPlayer != null)
             videoPlayer.Stop();
-        UIManager.Instance.SwitchState(GameState.MainMenu);
+        OnBack();
     }
 }

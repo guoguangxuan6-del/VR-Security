@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillSelectPanel : MonoBehaviour
+public class SkillSelectPanel : BasePanel
 {
     [Header("Skill Cards")]
     [SerializeField] private Button cprCard;
@@ -43,6 +43,6 @@ public class SkillSelectPanel : MonoBehaviour
 
     void OnBackClicked()
     {
-        UIManager.Instance.SwitchState(GameState.SceneSelect);
+        OnBack();
     }
 }
