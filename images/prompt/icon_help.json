@@ -1,0 +1,43 @@
+{
+  "type": "icon",
+  "goal": "帮助页面入口图标，用于 HomeMenuPanel 进入 HelpPanel",
+  "subject": {
+    "concept": "圆形外框内嵌问号符号，代表帮助与指引",
+    "symbolism": "疑问解答、使用指引、新手引导，用户支持入口"
+  },
+  "style": {
+    "rendering": "线性图标（line icon），纯描边无填充",
+    "color": "#00B4D8",
+    "stroke": "2px",
+    "stroke_linecap": "round",
+    "stroke_linejoin": "round",
+    "fill": "none",
+    "corner_radius": "2px",
+    "background": "transparent"
+  },
+  "layout": {
+    "size": "128x128 px",
+    "padding": "16px 安全区",
+    "alignment": "水平垂直居中"
+  },
+  "prompt": "A minimalist line-art icon of a help symbol, consisting of a perfect circle outline with a stylized question mark inside, the question mark has a curved top portion and a small dot below, single color #00B4D8 (cyan blue) on transparent background, 128x128 pixels, clean modern style, 2px uniform stroke with round linecap and linejoin, no fill, no gradient, no shadow, centered with 16px safe area padding, vector-style clean edges, the question mark is centered and well-proportioned within the circle, suitable for VR medical training application",
+  "constraints": {
+    "must_keep": [
+      "2px 描边粗细",
+      "round linecap 和 linejoin",
+      "圆形外框 + 问号组合",
+      "居中对齐",
+      "#00B4D8 单色",
+      "透明背景",
+      "问号需清晰可辨"
+    ],
+    "avoid": [
+      "填充色块",
+      "渐变",
+      "阴影",
+      "过于花哨的问号设计",
+      "方形外框",
+      "问号与圆形重叠过多"
+    ]
+  }
+}

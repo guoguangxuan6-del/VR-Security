@@ -1,0 +1,11 @@
+[
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "agent_id": "a35d291a6e22650ab",
+    "agent_type": "general-purpose",
+    "hook_event_name": "SubagentStart",
+    "logged_at": "2026-06-07T22:54:11.526955"
+  }
+]

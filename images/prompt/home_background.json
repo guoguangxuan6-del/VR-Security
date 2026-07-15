@@ -1,0 +1,44 @@
+{
+  "type": "background",
+  "goal": "HomePanel 主页全屏背景，营造科技医疗沉浸感",
+  "subject": {
+    "concept": "深蓝黑科技空间，带有悬浮粒子光线和六边形网格纹理",
+    "symbolism": "科技前沿、医疗数据可视化、VR沉浸空间，急救培训的数字化环境"
+  },
+  "style": {
+    "rendering": "半写实概念艺术风格，有深度感和氛围感",
+    "base_tone": "深蓝黑 #1A1A2E → #0D0D1A 渐变",
+    "lighting": "冷色调为主，蓝色环境光 #00B4D8 作为点缀，光线从画面中心向四周散射",
+    "effects": [
+      "轻微粒子效果（悬浮光点，蓝色和白色）",
+      "光线散射（volumetric light）",
+      "六边形/分子网格纹理（暗示医疗科学）",
+      "全息投影感的微弱数据线条"
+    ],
+    "mood_keywords": ["科技", "医疗", "专业", "沉浸", "可信", "深邃"]
+  },
+  "layout": {
+    "size": "1920x1080 px",
+    "safe_area": "中心区域预留给 Logo 和按钮，避免密集元素",
+    "depth_layers": "前景微弱粒子 + 中景光线 + 背景深色渐变"
+  },
+  "prompt": "A cinematic concept art background for a VR medical training application, dark blue-black gradient from #1A1A2E to #0D0D1A, featuring subtle floating particles and light motes in cyan blue #00B4D8 and white, volumetric light rays emanating faintly from the center, faint hexagonal grid pattern in the deep background suggesting molecular or data visualization structure, holographic data lines barely visible in the periphery, cold blue ambient lighting, deep sense of depth with multiple atmospheric layers, professional medical technology atmosphere, 1920x1080 resolution, ultra-wide cinematic composition, no text, no UI elements, no people, suitable as full-screen background for VR application",
+  "constraints": {
+    "must_keep": [
+      "深蓝黑主色调",
+      "#00B4D8 蓝色光效点缀",
+      "深度感和层次感",
+      "1920x1080 分辨率",
+      "中心区域相对简洁（留给前景UI）"
+    ],
+    "avoid": [
+      "血腥、恐怖 imagery",
+      "卡通/动漫风格",
+      "明亮的白色背景",
+      "过于密集的元素（保持呼吸感）",
+      "文字或UI元素",
+      "人物形象",
+      "过于写实的医疗场景"
+    ]
+  }
+}

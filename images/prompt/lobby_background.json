@@ -1,0 +1,45 @@
+{
+  "type": "background",
+  "goal": "HomeMenuPanel（大厅）全屏背景，营造现代急救指挥中心氛围",
+  "subject": {
+    "concept": "现代化急救培训中心/指挥室内部，有显示屏和监控设备轮廓",
+    "symbolism": "专业训练场所、指挥调度中心、现代化医疗设施，学员进入培训大厅的场景感"
+  },
+  "style": {
+    "rendering": "半写实概念艺术风格，有深度感和氛围感",
+    "base_tone": "深蓝黑 #1A1A2E → #0D0D1A 渐变",
+    "lighting": "室内冷色调照明，蓝色环境光 #00B4D8 从屏幕和设备发出",
+    "effects": [
+      "微弱的全息屏幕光晕",
+      "环境光散射",
+      "设备指示灯微光",
+      "透视线条暗示空间深度"
+    ],
+    "mood_keywords": ["专业", "现代", "科技", "指挥中心", "培训设施"]
+  },
+  "layout": {
+    "size": "1920x1080 px",
+    "safe_area": "中心和下半部分预留给菜单按钮，避免遮挡",
+    "depth_layers": "前景虚化 + 中景设备轮廓 + 背景空间结构",
+    "perspective": "轻微仰角视角，增强空间感和权威感"
+  },
+  "prompt": "A cinematic concept art interior of a modern emergency training command center for VR application, dark blue-black atmosphere with base colors #1A1A2E and #0D0D1A, featuring subtle outlines of large display screens on the back wall showing faint data visualizations, control console silhouettes in the mid-ground, blue ambient lighting #00B4D8 emanating from screens and equipment indicator lights, volumetric light creating depth, a sense of a spacious high-tech training facility, slight low-angle perspective for authority and immersion, cold professional lighting, 1920x1080 resolution, ultra-wide cinematic composition, no text, no UI overlays, no people, the center and lower portion remain relatively clear for foreground UI elements, suitable as full-screen background for VR lobby",
+  "constraints": {
+    "must_keep": [
+      "深蓝黑主色调",
+      "#00B4D8 蓝色设备光效",
+      "室内空间感",
+      "1920x1080 分辨率",
+      "中心/下半部分留白给UI"
+    ],
+    "avoid": [
+      "血腥、恐怖 imagery",
+      "卡通/动漫风格",
+      "明亮的白色背景",
+      "过于密集的前景元素",
+      "文字或UI元素",
+      "人物形象",
+      "过于写实的照片风格"
+    ]
+  }
+}

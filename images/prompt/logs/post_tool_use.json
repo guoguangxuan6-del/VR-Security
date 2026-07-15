@@ -1,0 +1,393 @@
+[
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "default",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "cd \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\" && cat > home_background.json << 'EOF'\n{\n  \"resource_name\": \"home_background\",\n  \"type\": \"background\",\n  \"dimensions\": \"1920x1080\",\n  \"prompt\": \"A dark medical technology background for a VR first-aid training application. Deep navy blue to black gradient (#1A1A2E to #0D0D1A). Subtle glowing particle effects floating in the air like microscopic medical data points. Faint hexagonal grid pattern in the background suggesting molecular structure. Soft blue light rays (#00B4D8) emanating from the center. Clean, modern, professional medical aesthetic with slight sci-fi elements. No text, no people, no medical equipment in foreground. Atmospheric and immersive, suitable as a UI backdrop.\",\n  \"negative_prompt\": \"text, letters, words, people, faces, medical equipment, syringes, blood, gore, bright colors, cartoon style, anime, low quality, blurry\",\n  \"style_notes\": \"\u9422\u3124\u7c2c HomePanel \u935a\udcaf\u9354\u3129\u3009\u9473\u5c7e\u6ad9\u951b\u5c84\u6e36\u7455\u4f7d\u60c0\u95ab\u72b5\udca7\u621e\u59a7\u9356\u8364\u679f\u59d8\u6d98\u6d3f\u951b\u5c7c\u7d7e\u6d93\u5d88\u5158\u6fb6\udcaa\u9358\u5b2b\u59c2\"\n}\nEOF\necho \"home_background.json created\"",
+      "description": "Create home_background.json prompt file"
+    },
+    "tool_response": {
+      "stdout": "home_background.json created",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    },
+    "tool_use_id": "call_d338aadcdb944612bf10055f",
+    "duration_ms": 376
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "default",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "cd \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\" && cat > lobby_background.json << 'EOF'\n{\n  \"resource_name\": \"lobby_background\",\n  \"type\": \"background\",\n  \"dimensions\": \"1920x1080\",\n  \"prompt\": \"Interior of a modern emergency medical training center or command room. Dark ambient lighting with blue accent lights (#00B4D8). Clean white and dark surfaces, medical monitoring screens showing vital signs (blurred), training mannequins visible in soft focus background. Professional medical environment with high-tech equipment. Slightly elevated camera angle showing the room depth. Atmosphere of a state-of-the-art CPR/AED training facility. Cinematic lighting, photorealistic style.\",\n  \"negative_prompt\": \"text, letters, words, real patients, blood, injuries, emergency scenes, outdoor, nature, bright daylight, cartoon, anime, low quality\",\n  \"style_notes\": \"\u9422\u3124\u7c2c LobbyPanel \u6fb6\u0443\u5dfa\u9473\u5c7e\u6ad9\u951b\u5c84\u6e36\u7455\u4f77\u7d8b\u941c\u9881\u7b13\u6d93\u6c2c\u717f\u7481\udcad\u941c\udcaf\u6fa7\u51bf\u7d1d\u93c8\u590b\u7e41\u6434\ufe3d\u5285\"\n}\nEOF\necho \"lobby_background.json created\"",
+      "description": "Create lobby_background.json prompt file"
+    },
+    "tool_response": {
+      "stdout": "lobby_background.json created",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    },
+    "tool_use_id": "call_d57b3000c6ee425c9b8f6868",
+    "duration_ms": 234
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "default",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "cd \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\" && cat > scene_card_subway.json << 'EOF'\n{\n  \"resource_name\": \"scene_card_subway\",\n  \"type\": \"card\",\n  \"dimensions\": \"512x384\",\n  \"prompt\": \"Interior of a modern subway station with emergency medical training scenario atmosphere. Clean tiled floors, platform edge visible, subway train in soft focus background. Warm overhead lighting mixed with cool blue emergency accent lights. The scene looks prepared for a CPR training exercise - a sense of readiness and professionalism. Slightly desaturated colors with blue tint overlay. Cinematic composition, photorealistic quality. The image should feel like a screenshot from a medical training simulation game.\",\n  \"negative_prompt\": \"text, letters, numbers, real emergency, blood, injured people, crowd, chaos, dark scary atmosphere, cartoon, anime, low quality, blurry\",\n  \"style_notes\": \"\u9366\u4f34\u6427\u7ed4\u6b0f\u6e80\u93c5\udcaf\u95ab\u590b\u5ae8\u9357\uff04\u5896\u951b\u5c84\u6e36\u7455\u4f77\u7d8b\u941c\u62cc\udcae\udcad\u7f01\u51a8\u6c28\u7f01\udcaa\u93b0\u71c2\u7d1d\u6d93\u5d86\u69f8\u942a\u71b7\u7584\u940f\u9e43\u6be6\u9366\u70d8\u6ad9\"\n}\nEOF\necho \"scene_card_subway.json created\"",
+      "description": "Create scene_card_subway.json prompt file"
+    },
+    "tool_response": {
+      "stdout": "scene_card_subway.json created",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    },
+    "tool_use_id": "call_46174e1f769440819e14067d",
+    "duration_ms": 206
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "default",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "cd \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\" && python3 -c \"\nimport json\n\ndata = {\n    'project': '\u9422\u71b8\u4f05\u7039\u581f\u59e2\u951b\u6b4fR\u74a7\u5b2d\u5158\u6434\u65c0\udc80\u30e6\u6673\u93b6\u3084\u7af4\u6d63\u64b3\u5bf2\u9a9e\u51b2\u5f74',\n    'style_guide': {\n        'primary_color': '#00B4D8',\n        'background_color': '#1A1A2E',\n        'accent_colors': ['#48CAE4', '#0077B6', '#44FF88', '#FF4444'],\n        'style_keywords': ['medical', 'tech', 'professional', 'clean', 'modern', 'sci-fi'],\n        'mood': '\u6d93\u30e8\u5011\u6d63\u55d5\u7b09\u9358\u5b2b\u59c2\u951b\u5c7c\u7b13\u6d93\u6c2b\u7d7e\u93c4\u64b4\u5e34\u6769\udc91'\n    },\n    'resources': []\n}\n\nimport glob\nfor f in sorted(glob.glob('*.json')):\n    if f == 'all_prompts.json':\n        continue\n    with open(f, 'r', encoding='utf-8') as fp:\n        data['resources'].append(json.load(fp))\n\nwith open('all_prompts.json', 'w', encoding='utf-8') as fp:\n    json.dump(data, fp, indent=2, ensure_ascii=False)\n\nprint('all_prompts.json created with', len(data['resources']), 'resources')\n\"",
+      "description": "Create all_prompts.json using Python"
+    },
+    "tool_response": {
+      "stdout": "all_prompts.json created with 9 resources",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    },
+    "tool_use_id": "call_95f212ad4220480cb8541a23",
+    "duration_ms": 314
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "default",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "ls -la \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt/\"",
+      "description": "List all prompt files"
+    },
+    "tool_response": {
+      "stdout": "total 56\ndrwxr-xr-x 1 laotie_nb666 197121    0 Jun  7 22:29 .\ndrwxr-xr-x 1 laotie_nb666 197121    0 Jun  7 21:37 ..\n-rw-r--r-- 1 laotie_nb666 197121 8742 Jun  7 22:31 all_prompts.json\n-rw-r--r-- 1 laotie_nb666 197121  921 Jun  7 22:29 home_background.json\n-rw-r--r-- 1 laotie_nb666 197121  958 Jun  7 22:29 icon_set.json\n-rw-r--r-- 1 laotie_nb666 197121  855 Jun  7 22:29 lobby_background.json\n-rw-r--r-- 1 laotie_nb666 197121  918 Jun  7 22:29 logo.json\ndrwxr-xr-x 1 laotie_nb666 197121    0 Jun  7 22:29 logs\n-rw-r--r-- 1 laotie_nb666 197121  826 Jun  7 22:29 panel_background.json\n-rw-r--r-- 1 laotie_nb666 197121  803 Jun  7 22:29 primary_button.json\n-rw-r--r-- 1 laotie_nb666 197121  885 Jun  7 22:29 scene_card_subway.json\n-rw-r--r-- 1 laotie_nb666 197121  877 Jun  7 21:41 skill_card_aed.json\n-rw-r--r-- 1 laotie_nb666 197121  845 Jun  7 22:29 skill_card_cpr.json",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    },
+    "tool_use_id": "call_bbff4521ae014b388b32fc7a",
+    "duration_ms": 151
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "default",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "ls -la \"/c/Users/laotie_nb666/Desktop/Life Guard/Life Guard Mini Program/images/prompts/\"",
+      "description": "List mini program prompt files"
+    },
+    "tool_response": {
+      "stdout": "total 166\ndrwxr-xr-x 1 laotie_nb666 197121    0 Jun  6 16:22 .\ndrwxr-xr-x 1 laotie_nb666 197121    0 Jun  7 18:09 ..\n-rw-r--r-- 1 laotie_nb666 197121 3875 Jun  6 16:22 README.md\n-rw-r--r-- 1 laotie_nb666 197121 1259 Jun  6 16:21 arrow-right-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  417 Jun  6 13:25 arrow-right-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1307 Jun  6 16:21 assessment-active-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  459 Jun  6 13:06 assessment-active-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1242 Jun  6 16:21 assessment-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  442 Jun  6 13:06 assessment-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1218 Jun  6 16:21 back-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  403 Jun  6 13:07 back-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1423 Jun  6 16:21 depth-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  434 Jun  6 13:07 depth-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1424 Jun  6 16:21 empty-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  442 Jun  6 13:07 empty-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1244 Jun  6 16:21 error-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  439 Jun  6 13:07 error-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1321 Jun  6 16:21 eye-close-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  456 Jun  6 13:07 eye-close-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1263 Jun  6 16:21 eye-open-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  423 Jun  6 13:07 eye-open-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1306 Jun  6 16:21 home-active-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  420 Jun  6 13:06 home-active-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1241 Jun  6 16:21 home-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  403 Jun  6 13:06 home-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1283 Jun  6 16:21 info-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  423 Jun  6 13:07 info-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1209 Jun  6 16:21 lock-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  374 Jun  6 13:07 lock-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1469 Jun  6 16:21 logo-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  471 Jun  6 13:07 logo-prompt.md\ndrwxr-xr-x 1 laotie_nb666 197121    0 Jun  7 15:15 logs\n-rw-r--r-- 1 laotie_nb666 197121 1298 Jun  6 16:21 profile-active-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  435 Jun  6 13:07 profile-active-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1233 Jun  6 16:21 profile-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  418 Jun  6 13:07 profile-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1322 Jun  6 16:21 qa-active-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  440 Jun  6 13:06 qa-active-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1257 Jun  6 16:21 qa-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  423 Jun  6 13:06 qa-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1411 Jun  6 16:21 rate-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  428 Jun  6 13:07 rate-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1349 Jun  6 16:21 robot-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  426 Jun  6 13:07 robot-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1319 Jun  6 16:21 score-active-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  434 Jun  6 13:06 score-active-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1266 Jun  6 16:21 score-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  417 Jun  6 13:06 score-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1222 Jun  6 16:21 send-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  415 Jun  6 13:07 send-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1990 Jun  6 16:21 style-guide.json\n-rw-r--r-- 1 laotie_nb666 197121 1345 Jun  6 16:21 switch-camera-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  435 Jun  6 13:07 switch-camera-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1298 Jun  6 16:21 user-avatar-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  442 Jun  6 13:07 user-avatar-prompt.md\n-rw-r--r-- 1 laotie_nb666 197121 1230 Jun  6 16:21 user-prompt.json\n-rw-r--r-- 1 laotie_nb666 197121  383 Jun  6 13:07 user-prompt.md",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    },
+    "tool_use_id": "call_c2d674eb629c4ccbb91cd0d0",
+    "duration_ms": 738
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "acceptEdits",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "rm -f \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\\all_prompts.json\" \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\\home_background.json\" \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\\lobby_background.json\" \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\\primary_button.json\" \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\\panel_background.json\" \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\\scene_card_subway.json\" \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\\skill_card_cpr.json\" \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\\skill_card_aed.json\" \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\\icon_set.json\" \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt\\logo.json\"\nls -la \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt/\"",
+      "description": "Clean up old prompt files"
+    },
+    "tool_response": {
+      "stdout": "total 8\ndrwxr-xr-x 1 laotie_nb666 197121 0 Jun  7 22:44 .\ndrwxr-xr-x 1 laotie_nb666 197121 0 Jun  7 21:37 ..\ndrwxr-xr-x 1 laotie_nb666 197121 0 Jun  7 22:42 .claude\ndrwxr-xr-x 1 laotie_nb666 197121 0 Jun  7 22:42 logs",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    },
+    "tool_use_id": "call_4dac92605c83493d95b241c1",
+    "duration_ms": 291
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "acceptEdits",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "ls -la \"/d/Skills and plugins/design/skills/\"",
+      "description": "List available design skills"
+    },
+    "tool_response": {
+      "stdout": "total 4\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 22 16:34 .\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 22 16:34 ..\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 15 00:56 art-bible\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 15 00:56 asset-audit\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 15 00:56 asset-spec\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 15 00:56 consistency-check\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 16 22:21 customize-animations\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 15 00:56 design-review\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 16 22:17 design-system\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 16 22:21 generate-audio\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 16 22:21 gpt-image-2\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 16 22:16 map-systems\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 15 00:56 quick-design\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 16 22:21 ui-ux-pro-max\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 15 00:56 ux-design\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 15 00:56 ux-review\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 16 22:21 visual-edit\ndrwxr-xr-x 1 laotie_nb666 197121 0 May 16 22:24 web-design-engineer",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    },
+    "tool_use_id": "call_407c1df1d19d483aa3c25729",
+    "duration_ms": 243
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "acceptEdits",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "ls -la \"/d/Skills and plugins/design/skills/design-system/\"",
+      "description": "List design-system skill files"
+    },
+    "tool_response": {
+      "stdout": "total 44\ndrwxr-xr-x 1 laotie_nb666 197121     0 May 16 22:17 .\ndrwxr-xr-x 1 laotie_nb666 197121     0 May 22 16:34 ..\n-rw-r--r-- 1 laotie_nb666 197121 40097 May 16 22:17 SKILL.md",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    },
+    "tool_use_id": "call_32f127401a244c768690c2eb",
+    "duration_ms": 530
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "acceptEdits",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "ls -la \"/d/Skills and plugins/design/skills/ui-ux-pro-max/\"",
+      "description": "List ui-ux-pro-max skill files"
+    },
+    "tool_response": {
+      "stdout": "total 24\ndrwxr-xr-x 1 laotie_nb666 197121     0 May 16 22:21 .\ndrwxr-xr-x 1 laotie_nb666 197121     0 May 22 16:34 ..\n-rw-r--r-- 1 laotie_nb666 197121 14176 May 16 22:21 SKILL.md\ndrwxr-xr-x 1 laotie_nb666 197121     0 May 15 00:56 data\ndrwxr-xr-x 1 laotie_nb666 197121     0 May 15 00:56 scripts",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    },
+    "tool_use_id": "call_eae8014de3c34693a892b0fc",
+    "duration_ms": 190
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "acceptEdits",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Read",
+    "tool_input": {
+      "file_path": "D:\\Skills and plugins\\design\\skills\\art-bible\\SKILL.md"
+    },
+    "tool_response": {
+      "type": "text",
+      "file": {
+        "filePath": "/d/Skills and plugins/design/skills/art-bible/SKILL.md",
+        "content": "---\nname: art-bible\ndescription: \"Guided, section-by-section Art Bible authoring. Creates the visual identity specification that gates all asset production. Run after /brainstorm is approved and before /map-systems or any GDD authoring begins.\"\nargument-hint: \"[--review full|lean|solo]\"\nuser-invocable: true\nallowed-tools: Read, Glob, Grep, Write, Edit, Task, AskUserQuestion\n---\n\n## Phase 0: Parse Arguments and Context Check\n\nResolve the review mode (once, store for all gate spawns this run):\n1. If `--review [full|lean|solo]` was passed \u922b\udc92 use that\n2. Else read `production/review-mode.txt` \u922b\udc92 use that value\n3. Else \u922b\udc92 default to `lean`\n\nSee `.claude/docs/director-gates.md` for the full check pattern.\n\nRead `design/gdd/game-concept.md`. If it does not exist, fail with:\n> \"No game concept found. Run `/brainstorm` first \u9225\udc94 the art bible is authored after the game concept is approved.\"\n\nExtract from game-concept.md:\n- Game title (working title)\n- Core fantasy and elevator pitch\n- Game pillars (all of them)\n- **Visual Identity Anchor** section if present (from brainstorm Phase 4 art-director output)\n- Target platform (if noted)\n\n**Retrofit mode detection**: Glob `design/art/art-bible.md`. If the file exists:\n- Read it in full\n- For each of the 9 sections, check whether the body contains real content (more than a `[To be designed]` placeholder or similar) vs. is empty/placeholder\n- Build a section status table:\n\n```\nSection | Status\n--------|--------\n1. Visual Identity Statement | [Complete / Empty / Placeholder]\n2. Color Palette | ...\n3. Lighting & Atmosphere | ...\n4. Character Art Direction | ...\n5. Environment & Level Art | ...\n6. UI Visual Language | ...\n7. VFX & Particle Style | ...\n8. Asset Standards | ...\n9. Style Prohibitions | ...\n```\n\n- Present this table to the user:\n  > \"Found existing art bible at `design/art/art-bible.md`. [N] sections are complete, [M] need content. I'll work on the incomplete sections only \u9225\udc94 existing content will not be touched.\"\n- Only work on sections with Status: Empty or Placeholder. Do not re-author sections that are already complete.\n\nIf the file does not exist, this is a fresh authoring session \u9225\udc94 proceed normally.\n\nRead `.claude/docs/technical-preferences.md` if it exists \u9225\udc94 extract performance budgets and engine for asset standard constraints.\n\n---\n\n## Phase 1: Framing\n\nPresent the session context and ask two questions before authoring anything:\n\nUse `AskUserQuestion` with two tabs:\n- Tab **\"Scope\"** \u9225\udc94 \"Which sections need to be authored today?\"\n  Options: `Full bible \u9225\udc94 all 9 sections` / `Visual identity core (sections 1\u9225\udc934 only)` / `Asset standards only (section 8)` / `Resume \u9225\udc94 fill in missing sections`\n- Tab **\"References\"** \u9225\udc94 \"Do you have reference games, films, or art that define the visual direction?\"\n  (Free text \u9225\udc94 let the user type specific titles. Do NOT preset options here.)\n\nIf the game-concept.md has a Visual Identity Anchor section, note it:\n> \"Found a visual identity anchor from brainstorm: '[anchor name] \u9225\udc94 [one-line rule]'. I'll use this as the foundation for the art bible.\"\n\n---\n\n## Phase 2: Visual Identity Foundation (Sections 1\u9225\udc934)\n\nThese four sections define the core visual language. **All other sections flow from them.** Author and write each to file before moving to the next.\n\n### Section 1: Visual Identity Statement\n\n**Goal**: A one-line visual rule plus 2\u9225\udc933 supporting principles that resolve visual ambiguity.\n\nIf a visual anchor exists from game-concept.md: present it and ask:\n- \"Build directly from this anchor?\"\n- \"Revise it before expanding?\"\n- \"Start fresh with new options?\"\n\n**Agent delegation (MANDATORY)**: Spawn `art-director` via Task:\n- Provide: game concept (elevator pitch, core fantasy), full pillar set, platform target, any reference games/art from Phase 1 framing, the visual anchor if it exists\n- Ask: \"Draft a Visual Identity Statement for this game. Provide: (1) a one-line visual rule that could resolve any visual decision ambiguity, (2) 2\u9225\udc933 supporting visual principles, each with a one-sentence design test ('when X is ambiguous, this principle says choose Y'). Anchor all principles directly in the stated pillars \u9225\udc94 each principle must serve a specific pillar.\"\n\nPresent the art-director's draft to the user. Use `AskUserQuestion`:\n- Options: `[A] Lock this in` / `[B] Revise the one-liner` / `[C] Revise a supporting principle` / `[D] Describe my own direction`\n\nWrite the approved section to file immediately.\n\n### Section 2: Mood & Atmosphere\n\n**Goal**: Emotional targets by game state \u9225\udc94 specific enough for a lighting artist to work from.\n\nFor each major game state (e.g., exploration, combat, victory, defeat, menus \u9225\udc94 adapt to this game's states), define:\n- Primary emotion/mood target\n- Lighting character (time of day, color temperature, contrast level)\n- Atmospheric descriptors (3\u9225\udc935 adjectives)\n- Energy level (frenetic / measured / contemplative / etc.)\n\n**Agent delegation**: Spawn `art-director` via Task with the Visual Identity Statement and pillar set. Ask: \"Define mood and atmosphere targets for each major game state in this game. Be specific \u9225\udc94 'dark and foreboding' is not enough. Name the exact emotional target, the lighting character (warm/cool, high/low contrast, time of day direction), and at least one visual element that carries the mood. Each game state must feel visually distinct from the others.\"\n\nWrite the approved section to file immediately.\n\n### Section 3: Shape Language\n\n**Goal**: The geometric vocabulary that makes this game's world visually coherent and distinguishable.\n\nCover:\n- Character silhouette philosophy (how readable at thumbnail size? Distinguishing trait per archetype?)\n- Environment geometry (angular/curved/organic/geometric \u9225\udc94 which dominates and why?)\n- UI shape grammar (does UI echo the world aesthetic, or is it a distinct HUD language?)\n- Hero shapes vs. supporting shapes (what draws the eye, what recedes?)\n\n**Agent delegation**: Spawn `art-director` via Task with Visual Identity Statement and mood targets. Ask: \"Define the shape language for this game. Connect each shape principle back to the visual identity statement and a specific game pillar. Explain what these shape choices communicate to the player emotionally.\"\n\nWrite the approved section to file immediately.\n\n### Section 4: Color System\n\n**Goal**: A complete, producible palette system that serves both aesthetic and communication needs.\n\nCover:\n- Primary palette (5\u9225\udc937 colors with roles \u9225\udc94 not just hex codes, but what each color means in this world)\n- Semantic color usage (what does red communicate? Gold? Blue? White? Establish the color vocabulary)\n- Per-biome or per-area color temperature rules (if the game has distinct areas)\n- UI palette (may differ from world palette \u9225\udc94 define the divergence explicitly)\n- Colorblind safety: which semantic colors need shape/icon/sound backup\n\n**Agent delegation**: Spawn `art-director` via Task with Visual Identity Statement and mood targets. Ask: \"Design the color system for this game. Every semantic color assignment must be explained \u9225\udc94 why does this color mean danger/safety/reward in this world? Identify which color pairs might fail colorblind players and specify what backup cues are needed.\"\n\nWrite the approved section to file immediately.\n\n---\n\n## Phase 3: Production Guides (Sections 5\u9225\udc938)\n\nThese sections translate the visual identity into concrete production rules. They should be specific enough that an outsourcing team can follow them without additional briefing.\n\n### Section 5: Character Design Direction\n\n**Agent delegation**: Spawn `art-director` via Task with sections 1\u9225\udc934. Ask: \"Define character design direction for this game. Cover: visual archetype for the player character (if any), distinguishing feature rules per character type (how do players tell enemies/NPCs/allies apart at a glance?), expression/pose style targets (stiff/expressive/realistic/exaggerated), and LOD philosophy (how much detail is preserved at game camera distance?).\"\n\nWrite the approved section to file.\n\n### Section 6: Environment Design Language\n\n**Agent delegation**: Spawn `art-director` via Task with sections 1\u9225\udc934. Ask: \"Define the environment design language for this game. Cover: architectural style and its relationship to the world's culture/history, texture philosophy (painted vs. PBR vs. stylized \u9225\udc94 why this choice for this game?), prop density rules (sparse/dense \u9225\udc94 what drives the choice per area type?), and environmental storytelling guidelines (what visual details should tell the story without text?).\"\n\nWrite the approved section to file.\n\n### Section 7: UI/HUD Visual Direction\n\n**Agent delegation**: Spawn in parallel:\n- **`art-director`**: Visual style for UI \u9225\udc94 diegetic vs. screen-space HUD, typography direction (font personality, weight, size hierarchy), iconography style (flat/outlined/illustrated/photorealistic), animation feel for UI elements\n- **`ux-designer`**: UX alignment check \u9225\udc94 does the visual direction support the interaction patterns this game requires? Flag any conflicts between art direction and readability/accessibility needs.\n\nCollect both. If they conflict (e.g., art-director wants elaborate diegetic UI but ux-designer flags it would reduce combat readability), surface the conflict explicitly with both positions. Do NOT silently resolve \u9225\udc94 use `AskUserQuestion` to let the user decide.\n\nWrite the approved section to file.\n\n### Section 8: Asset Standards\n\n**Agent delegation**: Spawn in parallel:\n- **`art-director`**: File format preferences, naming convention direction, texture resolution tiers, LOD level expectations, export settings philosophy\n- **`technical-artist`**: Engine-specific hard constraints \u9225\udc94 poly count budgets per asset category, texture memory limits, material slot counts, importer constraints, anything from the performance budgets in `.claude/docs/technical-preferences.md`\n\nIf any art preference conflicts with a technical constraint (e.g., art-director wants 4K textures but performance budget requires 2K for mobile), resolve the conflict explicitly \u9225\udc94 note both the ideal and the constrained standard, and explain the tradeoff. Ambiguity in asset standards is where production costs are born.\n\nWrite the approved section to file.\n\n---\n\n## Phase 4: Reference Direction (Section 9)\n\n**Goal**: A curated reference set that is specific about what to take and what to avoid from each source.\n\n**Agent delegation**: Spawn `art-director` via Task with the completed sections 1\u9225\udc938. Ask: \"Compile a reference direction for this game. Provide 3\u9225\udc935 reference sources (games, films, art styles, or specific artists). For each: name it, specify exactly what visual element to draw from it (not 'the general aesthetic' \u9225\udc94 a specific technique, color choice, or compositional rule), and specify what to explicitly avoid or diverge from (to prevent the 'trying to copy X' reading). References should be additive \u9225\udc94 no two references should be pointing in exactly the same direction.\"\n\nWrite the approved section to file.\n\n---\n\n## Phase 5: Art Director Sign-Off\n\n**Review mode check** \u9225\udc94 apply before spawning AD-ART-BIBLE:\n- `solo` \u922b\udc92 skip. Note: \"AD-ART-BIBLE skipped \u9225\udc94 Solo mode.\" Proceed to Phase 6.\n- `lean` \u922b\udc92 skip (not a PHASE-GATE). Note: \"AD-ART-BIBLE skipped \u9225\udc94 Lean mode.\" Proceed to Phase 6.\n- `full` \u922b\udc92 spawn as normal.\n\nAfter all sections are complete (or the scoped set from Phase 1 is complete), spawn `creative-director` via Task using gate **AD-ART-BIBLE** (`.claude/docs/director-gates.md`).\n\nPass: art bible file path, game pillars, visual identity anchor.\n\nHandle verdict per standard rules in `director-gates.md`. Record the verdict in the art bible's status header:\n`> **Art Director Sign-Off (AD-ART-BIBLE)**: APPROVED [date] / CONCERNS (accepted) [date] / REVISED [date]`\n\n---\n\n## Phase 6: Close\n\nBefore presenting next steps, check project state:\n- Does `design/gdd/systems-index.md` exist? \u922b\udc92 map-systems is done, skip that option\n- Does `.claude/docs/technical-preferences.md` contain a configured engine (not `[TO BE CONFIGURED]`)? \u922b\udc92 setup-engine is done, skip that option\n- Does `design/gdd/` contain any `*.md` files? \u922b\udc92 design-system has been run, skip that option\n- Does `design/gdd/gdd-cross-review-*.md` exist? \u922b\udc92 review-all-gdds is done\n- Do GDDs exist (check above)? \u922b\udc92 include /consistency-check option\n\nUse `AskUserQuestion` for next steps. Only include options that are genuinely next based on the state check above:\n\n**Option pool \u9225\udc94 include only if not already done:**\n- `[_] Run /map-systems \u9225\udc94 decompose the concept into systems before writing GDDs` (skip if systems-index.md exists)\n- `[_] Run /setup-engine \u9225\udc94 configure the engine (asset standards may need revisiting after engine is set)` (skip if engine configured)\n- `[_] Run /design-system \u9225\udc94 start the first GDD` (skip if any GDDs exist)\n- `[_] Run /review-all-gdds \u9225\udc94 cross-GDD consistency check (required before Technical Setup gate)` (skip if gdd-cross-review-*.md exists)\n- `[_] Run /asset-spec \u9225\udc94 generate per-asset visual specs and AI generation prompts from approved GDDs` (include if GDDs exist)\n- `[_] Run /consistency-check \u9225\udc94 scan existing GDDs against the art bible for visual direction conflicts` (include if GDDs exist)\n- `[_] Run /create-architecture \u9225\udc94 author the master architecture document (next Technical Setup step)`\n- `[_] Stop here`\n\nAssign letters A, B, C\u9225\udca6 only to the options actually included. Mark the most logical pipeline-advancing option as `(recommended)`.\n\n> **Always include** `/create-architecture` and Stop here as options \u9225\udc94 these are always valid next steps once the art bible is complete.\n\n---\n\n## Collaborative Protocol\n\nEvery section follows: **Question \u922b\udc92 Options \u922b\udc92 Decision \u922b\udc92 Draft (from art-director agent) \u922b\udc92 Approval \u922b\udc92 Write to file**\n\n- Never draft a section without first spawning the relevant agent(s)\n- Write each section to file immediately after approval \u9225\udc94 do not batch\n- Surface all agent disagreements to the user \u9225\udc94 never silently resolve conflicts between art-director and technical-artist\n- The art bible is a constraint document: it restricts future decisions in exchange for visual coherence. Every section should feel like it narrows the solution space productively.\n\n---\n\n## Recommended Next Steps\n\nAfter the art bible is approved:\n- Run `/map-systems` to decompose the concept into game systems before authoring GDDs\n- Run `/setup-engine` if the engine is not yet configured (asset standards may need revisiting after engine selection)\n- Run `/design-system [first-system]` to start authoring per-system GDDs\n- Run `/consistency-check` once GDDs exist to validate them against the art bible's visual rules\n- Run `/create-architecture` to produce the master architecture document\n",
+        "numLines": 249,
+        "startLine": 1,
+        "totalLines": 249
+      }
+    },
+    "tool_use_id": "call_1492f3f258f44cdea8ffbd35",
+    "duration_ms": 19
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "acceptEdits",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Read",
+    "tool_input": {
+      "file_path": "D:\\Skills and plugins\\design\\skills\\ui-ux-pro-max\\SKILL.md"
+    },
+    "tool_response": {
+      "type": "text",
+      "file": {
+        "filePath": "/d/Skills and plugins/design/skills/ui-ux-pro-max/SKILL.md",
+        "content": "---\nname: ui-ux-pro-max\ndescription: \"UI/UX design intelligence. 67 styles, 96 palettes, 57 font pairings, 25 charts, 13 stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui). Actions: plan, build, create, design, implement, review, fix, improve, optimize, enhance, refactor, check UI/UX code. Projects: website, landing page, dashboard, admin panel, e-commerce, SaaS, portfolio, blog, mobile app, .html, .tsx, .vue, .svelte. Elements: button, modal, navbar, sidebar, card, table, form, chart. Styles: glassmorphism, claymorphism, minimalism, brutalism, neumorphism, bento grid, dark mode, responsive, skeuomorphism, flat design. Topics: color palette, accessibility, animation, layout, typography, font pairing, spacing, hover, shadow, gradient. Integrations: shadcn/ui MCP for component search and examples.\"\nargument-hint: \"\"\nuser-invocable: true\nallowed-tools: Read, Glob, Grep\n---\n# UI/UX Pro Max - Design Intelligence\n\nComprehensive design guide for web and mobile applications. Contains 67 styles, 96 color palettes, 57 font pairings, 99 UX guidelines, and 25 chart types across 13 technology stacks. Searchable database with priority-based recommendations.\n\n## When to Apply\n\nReference these guidelines when:\n- Designing new UI components or pages\n- Choosing color palettes and typography\n- Reviewing code for UX issues\n- Building landing pages or dashboards\n- Implementing accessibility requirements\n\n## Rule Categories by Priority\n\n| Priority | Category | Impact | Domain |\n|----------|----------|--------|--------|\n| 1 | Accessibility | CRITICAL | `ux` |\n| 2 | Touch & Interaction | CRITICAL | `ux` |\n| 3 | Performance | HIGH | `ux` |\n| 4 | Layout & Responsive | HIGH | `ux` |\n| 5 | Typography & Color | MEDIUM | `typography`, `color` |\n| 6 | Animation | MEDIUM | `ux` |\n| 7 | Style Selection | MEDIUM | `style`, `product` |\n| 8 | Charts & Data | LOW | `chart` |\n\n## Quick Reference\n\n### 1. Accessibility (CRITICAL)\n\n- `color-contrast` - Minimum 4.5:1 ratio for normal text\n- `focus-states` - Visible focus rings on interactive elements\n- `alt-text` - Descriptive alt text for meaningful images\n- `aria-labels` - aria-label for icon-only buttons\n- `keyboard-nav` - Tab order matches visual order\n- `form-labels` - Use label with for attribute\n\n### 2. Touch & Interaction (CRITICAL)\n\n- `touch-target-size` - Minimum 44x44px touch targets\n- `hover-vs-tap` - Use click/tap for primary interactions\n- `loading-buttons` - Disable button during async operations\n- `error-feedback` - Clear error messages near problem\n- `cursor-pointer` - Add cursor-pointer to clickable elements\n\n### 3. Performance (HIGH)\n\n- `image-optimization` - Use WebP, srcset, lazy loading\n- `reduced-motion` - Check prefers-reduced-motion\n- `content-jumping` - Reserve space for async content\n\n### 4. Layout & Responsive (HIGH)\n\n- `viewport-meta` - width=device-width initial-scale=1\n- `readable-font-size` - Minimum 16px body text on mobile\n- `horizontal-scroll` - Ensure content fits viewport width\n- `z-index-management` - Define z-index scale (10, 20, 30, 50)\n\n### 5. Typography & Color (MEDIUM)\n\n- `line-height` - Use 1.5-1.75 for body text\n- `line-length` - Limit to 65-75 characters per line\n- `font-pairing` - Match heading/body font personalities\n\n### 6. Animation (MEDIUM)\n\n- `duration-timing` - Use 150-300ms for micro-interactions\n- `transform-performance` - Use transform/opacity, not width/height\n- `loading-states` - Skeleton screens or spinners\n\n### 7. Style Selection (MEDIUM)\n\n- `style-match` - Match style to product type\n- `consistency` - Use same style across all pages\n- `no-emoji-icons` - Use SVG icons, not emojis\n\n### 8. Charts & Data (LOW)\n\n- `chart-type` - Match chart type to data type\n- `color-guidance` - Use accessible color palettes\n- `data-table` - Provide table alternative for accessibility\n\n## How to Use\n\nSearch specific domains using the CLI tool below.\n\n---\n\n\n## Prerequisites\n\nCheck if Python is installed:\n\n```bash\npython3 --version || python --version\n```\n\nIf Python is not installed, install it based on user's OS:\n\n**macOS:**\n```bash\nbrew install python3\n```\n\n**Ubuntu/Debian:**\n```bash\nsudo apt update && sudo apt install python3\n```\n\n**Windows:**\n```powershell\nwinget install Python.Python.3.12\n```\n\n---\n\n## How to Use This Skill\n\nWhen user requests UI/UX work (design, build, create, implement, review, fix, improve), follow this workflow:\n\n### Step 1: Analyze User Requirements\n\nExtract key information from user request:\n- **Product type**: SaaS, e-commerce, portfolio, dashboard, landing page, etc.\n- **Style keywords**: minimal, playful, professional, elegant, dark mode, etc.\n- **Industry**: healthcare, fintech, gaming, education, etc.\n- **Stack**: React, Vue, Next.js, or default to `html-tailwind`\n\n### Step 2: Generate Design System (REQUIRED)\n\n**Always start with `--design-system`** to get comprehensive recommendations with reasoning:\n\n```bash\npython3 skills/ui-ux-pro-max/scripts/search.py \"<product_type> <industry> <keywords>\" --design-system [-p \"Project Name\"]\n```\n\nThis command:\n1. Searches 5 domains in parallel (product, style, color, landing, typography)\n2. Applies reasoning rules from `ui-reasoning.csv` to select best matches\n3. Returns complete design system: pattern, style, colors, typography, effects\n4. Includes anti-patterns to avoid\n\n**Example:**\n```bash\npython3 skills/ui-ux-pro-max/scripts/search.py \"beauty spa wellness service\" --design-system -p \"Serenity Spa\"\n```\n\n### Step 2b: Persist Design System (Master + Overrides Pattern)\n\nTo save the design system for hierarchical retrieval across sessions, add `--persist`:\n\n```bash\npython3 skills/ui-ux-pro-max/scripts/search.py \"<query>\" --design-system --persist -p \"Project Name\"\n```\n\nThis creates:\n- `design-system/MASTER.md` \u9225\udc94 Global Source of Truth with all design rules\n- `design-system/pages/` \u9225\udc94 Folder for page-specific overrides\n\n**With page-specific override:**\n```bash\npython3 skills/ui-ux-pro-max/scripts/search.py \"<query>\" --design-system --persist -p \"Project Name\" --page \"dashboard\"\n```\n\nThis also creates:\n- `design-system/pages/dashboard.md` \u9225\udc94 Page-specific deviations from Master\n\n**How hierarchical retrieval works:**\n1. When building a specific page (e.g., \"Checkout\"), first check `design-system/pages/checkout.md`\n2. If the page file exists, its rules **override** the Master file\n3. If not, use `design-system/MASTER.md` exclusively\n\n### Step 3: Supplement with Detailed Searches (as needed)\n\nAfter getting the design system, use domain searches to get additional details:\n\n```bash\npython3 skills/ui-ux-pro-max/scripts/search.py \"<keyword>\" --domain <domain> [-n <max_results>]\n```\n\n**When to use detailed searches:**\n\n| Need | Domain | Example |\n|------|--------|---------|\n| More style options | `style` | `--domain style \"glassmorphism dark\"` |\n| Chart recommendations | `chart` | `--domain chart \"real-time dashboard\"` |\n| UX best practices | `ux` | `--domain ux \"animation accessibility\"` |\n| Alternative fonts | `typography` | `--domain typography \"elegant luxury\"` |\n| Landing structure | `landing` | `--domain landing \"hero social-proof\"` |\n\n### Step 4: Stack Guidelines (Default: html-tailwind)\n\nGet implementation-specific best practices. If user doesn't specify a stack, **default to `html-tailwind`**.\n\n```bash\npython3 skills/ui-ux-pro-max/scripts/search.py \"<keyword>\" --stack html-tailwind\n```\n\nAvailable stacks: `html-tailwind`, `react`, `nextjs`, `vue`, `svelte`, `swiftui`, `react-native`, `flutter`, `shadcn`, `jetpack-compose`\n\n---\n\n## Search Reference\n\n### Available Domains\n\n| Domain | Use For | Example Keywords |\n|--------|---------|------------------|\n| `product` | Product type recommendations | SaaS, e-commerce, portfolio, healthcare, beauty, service |\n| `style` | UI styles, colors, effects | glassmorphism, minimalism, dark mode, brutalism |\n| `typography` | Font pairings, Google Fonts | elegant, playful, professional, modern |\n| `color` | Color palettes by product type | saas, ecommerce, healthcare, beauty, fintech, service |\n| `landing` | Page structure, CTA strategies | hero, hero-centric, testimonial, pricing, social-proof |\n| `chart` | Chart types, library recommendations | trend, comparison, timeline, funnel, pie |\n| `ux` | Best practices, anti-patterns | animation, accessibility, z-index, loading |\n| `react` | React/Next.js performance | waterfall, bundle, suspense, memo, rerender, cache |\n| `web` | Web interface guidelines | aria, focus, keyboard, semantic, virtualize |\n| `prompt` | AI prompts, CSS keywords | (style name) |\n\n### Available Stacks\n\n| Stack | Focus |\n|-------|-------|\n| `html-tailwind` | Tailwind utilities, responsive, a11y (DEFAULT) |\n| `react` | State, hooks, performance, patterns |\n| `nextjs` | SSR, routing, images, API routes |\n| `vue` | Composition API, Pinia, Vue Router |\n| `svelte` | Runes, stores, SvelteKit |\n| `swiftui` | Views, State, Navigation, Animation |\n| `react-native` | Components, Navigation, Lists |\n| `flutter` | Widgets, State, Layout, Theming |\n| `shadcn` | shadcn/ui components, theming, forms, patterns |\n| `jetpack-compose` | Composables, Modifiers, State Hoisting, Recomposition |\n\n---\n\n## Example Workflow\n\n**User request:** \"L\u813fm landing page cho d\u5cc4\u5a8dh v\u5cc4\udca5 ch\u81acm s\u8d38c da chuy\u951an nghi\u5cc4\u564b\"\n\n### Step 1: Analyze Requirements\n- Product type: Beauty/Spa service\n- Style keywords: elegant, professional, soft\n- Industry: Beauty/Wellness\n- Stack: html-tailwind (default)\n\n### Step 2: Generate Design System (REQUIRED)\n\n```bash\npython3 skills/ui-ux-pro-max/scripts/search.py \"beauty spa wellness service elegant\" --design-system -p \"Serenity Spa\"\n```\n\n**Output:** Complete design system with pattern, style, colors, typography, effects, and anti-patterns.\n\n### Step 3: Supplement with Detailed Searches (as needed)\n\n```bash\n# Get UX guidelines for animation and accessibility\npython3 skills/ui-ux-pro-max/scripts/search.py \"animation accessibility\" --domain ux\n\n# Get alternative typography options if needed\npython3 skills/ui-ux-pro-max/scripts/search.py \"elegant luxury serif\" --domain typography\n```\n\n### Step 4: Stack Guidelines\n\n```bash\npython3 skills/ui-ux-pro-max/scripts/search.py \"layout responsive form\" --stack html-tailwind\n```\n\n**Then:** Synthesize design system + detailed searches and implement the design.\n\n---\n\n## Output Formats\n\nThe `--design-system` flag supports two output formats:\n\n```bash\n# ASCII box (default) - best for terminal display\npython3 skills/ui-ux-pro-max/scripts/search.py \"fintech crypto\" --design-system\n\n# Markdown - best for documentation\npython3 skills/ui-ux-pro-max/scripts/search.py \"fintech crypto\" --design-system -f markdown\n```\n\n---\n\n## Tips for Better Results\n\n1. **Be specific with keywords** - \"healthcare SaaS dashboard\" > \"app\"\n2. **Search multiple times** - Different keywords reveal different insights\n3. **Combine domains** - Style + Typography + Color = Complete design system\n4. **Always check UX** - Search \"animation\", \"z-index\", \"accessibility\" for common issues\n5. **Use stack flag** - Get implementation-specific best practices\n6. **Iterate** - If first search doesn't match, try different keywords\n\n---\n\n## Common Rules for Professional UI\n\nThese are frequently overlooked issues that make UI look unprofessional:\n\n### Icons & Visual Elements\n\n| Rule | Do | Don't |\n|------|----|----- |\n| **No emoji icons** | Use SVG icons (Heroicons, Lucide, Simple Icons) | Use emojis like \u9983\u5e39 \u9983\u6b8c \u923f\u6b19\u7b0d as UI icons |\n| **Stable hover states** | Use color/opacity transitions on hover | Use scale transforms that shift layout |\n| **Correct brand logos** | Research official SVG from Simple Icons | Guess or use incorrect logo paths |\n| **Consistent icon sizing** | Use fixed viewBox (24x24) with w-6 h-6 | Mix different icon sizes randomly |\n\n### Interaction & Cursor\n\n| Rule | Do | Don't |\n|------|----|----- |\n| **Cursor pointer** | Add `cursor-pointer` to all clickable/hoverable cards | Leave default cursor on interactive elements |\n| **Hover feedback** | Provide visual feedback (color, shadow, border) | No indication element is interactive |\n| **Smooth transitions** | Use `transition-colors duration-200` | Instant state changes or too slow (>500ms) |\n\n### Light/Dark Mode Contrast\n\n| Rule | Do | Don't |\n|------|----|----- |\n| **Glass card light mode** | Use `bg-white/80` or higher opacity | Use `bg-white/10` (too transparent) |\n| **Text contrast light** | Use `#0F172A` (slate-900) for text | Use `#94A3B8` (slate-400) for body text |\n| **Muted text light** | Use `#475569` (slate-600) minimum | Use gray-400 or lighter |\n| **Border visibility** | Use `border-gray-200` in light mode | Use `border-white/10` (invisible) |\n\n### Layout & Spacing\n\n| Rule | Do | Don't |\n|------|----|----- |\n| **Floating navbar** | Add `top-4 left-4 right-4` spacing | Stick navbar to `top-0 left-0 right-0` |\n| **Content padding** | Account for fixed navbar height | Let content hide behind fixed elements |\n| **Consistent max-width** | Use same `max-w-6xl` or `max-w-7xl` | Mix different container widths |\n\n---\n\n## Pre-Delivery Checklist\n\nBefore delivering UI code, verify these items:\n\n### Visual Quality\n- [ ] No emojis used as icons (use SVG instead)\n- [ ] All icons from consistent icon set (Heroicons/Lucide)\n- [ ] Brand logos are correct (verified from Simple Icons)\n- [ ] Hover states don't cause layout shift\n- [ ] Use theme colors directly (bg-primary) not var() wrapper\n\n### Interaction\n- [ ] All clickable elements have `cursor-pointer`\n- [ ] Hover states provide clear visual feedback\n- [ ] Transitions are smooth (150-300ms)\n- [ ] Focus states visible for keyboard navigation\n\n### Light/Dark Mode\n- [ ] Light mode text has sufficient contrast (4.5:1 minimum)\n- [ ] Glass/transparent elements visible in light mode\n- [ ] Borders visible in both modes\n- [ ] Test both modes before delivery\n\n### Layout\n- [ ] Floating elements have proper spacing from edges\n- [ ] No content hidden behind fixed navbars\n- [ ] Responsive at 375px, 768px, 1024px, 1440px\n- [ ] No horizontal scroll on mobile\n\n### Accessibility\n- [ ] All images have alt text\n- [ ] Form inputs have labels\n- [ ] Color is not the only indicator\n- [ ] `prefers-reduced-motion` respected\n",
+        "numLines": 381,
+        "startLine": 1,
+        "totalLines": 381
+      }
+    },
+    "tool_use_id": "call_f037cc0d446f43b78384e9e3",
+    "duration_ms": 27
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "acceptEdits",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "ls -la \"/d/Skills and plugins/design/skills/ui-ux-pro-max/scripts/\"",
+      "description": "List ui-ux-pro-max scripts"
+    },
+    "tool_response": {
+      "stdout": "total 64\ndrwxr-xr-x 1 laotie_nb666 197121     0 May 15 00:56 .\ndrwxr-xr-x 1 laotie_nb666 197121     0 May 16 22:21 ..\ndrwxr-xr-x 1 laotie_nb666 197121     0 May 23 18:05 __pycache__\n-rwxr-xr-x 1 laotie_nb666 197121 10227 May 15 00:56 core.py\n-rwxr-xr-x 1 laotie_nb666 197121 43614 May 15 00:56 design_system.py\n-rwxr-xr-x 1 laotie_nb666 197121  5478 May 15 00:56 search.py",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    },
+    "tool_use_id": "call_3a7897870295485f872a8a41",
+    "duration_ms": 542
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "acceptEdits",
+    "agent_id": "a35d291a6e22650ab",
+    "agent_type": "general-purpose",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Glob",
+    "tool_input": {
+      "pattern": "*.json",
+      "path": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt"
+    },
+    "tool_response": {
+      "filenames": [
+        "logs\\stop.json",
+        "logs\\notification.json",
+        "logs\\user_prompt_submit.json",
+        ".claude\\data\\sessions\\d5cd77be-13be-49db-99d8-e98b295512d4.json",
+        "logs\\post_tool_use.json",
+        "logs\\permission_request.json",
+        "style-guide.json",
+        "logs\\subagent_start.json",
+        "icon_play.json",
+        "icon_training.json",
+        "icon_settings.json",
+        "icon_help.json",
+        "icon_back.json",
+        "icon_user.json",
+        "icon_lock.json",
+        "icon_retry.json",
+        "icon_home.json",
+        "logo.json",
+        "home_background.json",
+        "lobby_background.json",
+        "scene_card_subway.json",
+        "skill_card_cpr.json",
+        "skill_card_aed.json",
+        "panel_background.json",
+        "logs\\pre_tool_use.json"
+      ],
+      "durationMs": 94,
+      "numFiles": 25,
+      "truncated": false
+    },
+    "tool_use_id": "call_811ee7704db1423eb3fb7d28",
+    "duration_ms": 94
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "acceptEdits",
+    "effort": {
+      "level": "high"
+    },
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "ls -la \"C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt/\"",
+      "description": "List all generated prompt files"
+    },
+    "tool_response": {
+      "stdout": "total 84\ndrwxr-xr-x 1 laotie_nb666 197121    0 Jun  7 22:58 .\ndrwxr-xr-x 1 laotie_nb666 197121    0 Jun  7 21:37 ..\ndrwxr-xr-x 1 laotie_nb666 197121    0 Jun  7 22:42 .claude\n-rw-r--r-- 1 laotie_nb666 197121 2293 Jun  7 22:56 home_background.json\n-rw-r--r-- 1 laotie_nb666 197121 1566 Jun  7 22:55 icon_back.json\n-rw-r--r-- 1 laotie_nb666 197121 1646 Jun  7 22:55 icon_help.json\n-rw-r--r-- 1 laotie_nb666 197121 1558 Jun  7 22:56 icon_home.json\n-rw-r--r-- 1 laotie_nb666 197121 1543 Jun  7 22:55 icon_lock.json\n-rw-r--r-- 1 laotie_nb666 197121 1572 Jun  7 22:54 icon_play.json\n-rw-r--r-- 1 laotie_nb666 197121 1580 Jun  7 22:56 icon_retry.json\n-rw-r--r-- 1 laotie_nb666 197121 1577 Jun  7 22:55 icon_settings.json\n-rw-r--r-- 1 laotie_nb666 197121 1597 Jun  7 22:54 icon_training.json\n-rw-r--r-- 1 laotie_nb666 197121 1574 Jun  7 22:55 icon_user.json\n-rw-r--r-- 1 laotie_nb666 197121 2359 Jun  7 22:57 lobby_background.json\n-rw-r--r-- 1 laotie_nb666 197121 1815 Jun  7 22:56 logo.json\ndrwxr-xr-x 1 laotie_nb666 197121    0 Jun  7 22:58 logs\n-rw-r--r-- 1 laotie_nb666 197121 1984 Jun  7 22:58 panel_background.json\n-rw-r--r-- 1 laotie_nb666 197121 2019 Jun  7 22:57 scene_card_subway.json\n-rw-r--r-- 1 laotie_nb666 197121 2233 Jun  7 22:58 skill_card_aed.json\n-rw-r--r-- 1 laotie_nb666 197121 2165 Jun  7 22:57 skill_card_cpr.json\n-rw-r--r-- 1 laotie_nb666 197121 5772 Jun  7 22:53 style-guide.json",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    },
+    "tool_use_id": "call_db46f5dcd01a4374a402dccf",
+    "duration_ms": 174
+  }
+]

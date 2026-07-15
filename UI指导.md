@@ -97,18 +97,21 @@ public class InputManager : MonoBehaviour
 
 | ID | 界面名称 | 优先级 | 说明 |
 |----|---------|--------|------|
-| UI-01 | 主菜单（HomeMenu） | P0 | 首页，含导学视频、技能训练、设置、帮助入口 |
-| UI-02 | 导学视频播放界面 | P1 | 播放CPR/AED教学视频 |
-| UI-03 | 设置界面（Settings） | P1 | 音量调节、分辨率控制 |
-| UI-04 | 帮助界面（Help） | P2 | 手柄/键位说明 |
-| UI-05 | 场景选择界面 | P0 | 选择训练场景（地铁站/病房等） |
-| UI-06 | 技能选择界面 | P0 | 选择CPR训练或AED训练 |
-| UI-07 | 训练中HUD | P0 | 实时显示步骤提示、计时、评分 |
-| UI-08 | 错误提示弹窗 | P0 | 红字弹窗 + 语音报错 |
-| UI-09 | 成绩报告界面 | P0 | 训练结束后的完整报告 |
-| UI-10 | 登录界面 | P1 | 账号登录（VR阶段需要全息键盘） |
+| UI-01 | 主页（HomePanel） | P0 | 启动入口，仿王者荣耀大厅；未登录态含[点击登录][离线模式]，已登录态含[进入大厅] |
+| UI-02 | 导学视频（StudyVideo） | P1 | 播放CPR/AED教学视频 |
+| UI-03 | 设置（Settings） | P1 | 音量/分辨率调节，Apply/Cancel模式 |
+| UI-04 | 帮助（Help） | P2 | 手柄/键位说明 |
+| UI-05 | 场景选择（SceneSelect） | P0 | 选择训练场景（地铁站/病房等） |
+| UI-06 | 技能选择（SkillSelect） | P0 | 选择CPR训练或AED训练 |
+| UI-07 | 训练HUD | P0 | 实时显示步骤提示、计时、评分（阶段二） |
+| UI-08 | 错误提示弹窗 | P0 | 红字弹窗 + 语音报错（阶段二） |
+| UI-09 | 成绩报告（ScoreReport） | P0 | 训练结束后的完整报告 |
+| UI-10 | 登录（LoginPanel） | P0 | 弹窗，从HomePanel打开，含[注册入口] |
 | UI-11 | VR键盘（VirtualKeyboard） | P1 | VR环境中的虚拟键盘 |
-| UI-12 | 实时评分悬浮面板 | P1 | Tab切换显示，包含深度/频率/顺序等指标 |
+| UI-12 | 实时评分悬浮面板 | P1 | Tab切换显示，包含深度/频率/顺序等指标（阶段二） |
+| UI-13 | 大厅（LobbyPanel） | P0 | 原HomeMenuPanel重命名，导学视频/技能训练/设置/帮助入口 |
+| UI-14 | 注册（RegisterPanel） | P0 | 弹窗，用户名/密码/确认密码，含[返回登录] |
+| UI-15 | 训练占位（TrainingPlaceholderPanel） | P0 | 训练模块开发中占位，返回按钮 |
 
 ---
 
@@ -145,33 +148,49 @@ public class InputManager : MonoBehaviour
 > 2. 每个小阶段完成后找用户确认，再进入下一阶段
 > 3. 服务接口先定义，本地实现先写，后端就绪后替换
 
-### ⚠️ 当前状态（2026-05-19）
+### ⚠️ 当前状态（2026-06-07）
 
 **已完成：**
-- 阶段零全部完成（接口+本地实现+ServiceLocator）
-- 阶段一8个Panel脚本已完成（含AutoBind自动绑定）
-- 独立UI场景 `Assets/Scenes/Login Scene.unity` 已创建并完成迁移
-- 所有Panel布局已优化，居中锚定，层次清晰
-- Inspector字段已通过编辑器脚本自动绑定
-- 所有文字英文，字体使用 LiberationSans SDF
+- ✅ 阶段零全部完成（接口+本地实现+ServiceLocator）
+- ✅ 阶段一全部完成（11个Panel + BasePanel基类 + AutoBindEditor）
+- ✅ 独立UI场景 `Assets/Scenes/UI/Login Scene.unity` 已创建并完成迁移
+- ✅ **一阶段优化全部实施完毕：**
+  - GameStateMachine 已删除，状态追踪由 UIManager 统一管理
+  - HomePanel 新建（仿王者荣耀大厅入口）+ LoginPanel 改造为弹窗
+  - RegisterPanel 新建（注册弹窗）
+  - TrainingPlaceholderPanel 新建（训练模块开发中占位）
+  - HomeMenuPanel 重命名为 LobbyPanel
+  - BasePanel 基类（OnEnter/OnExit/OnBack）+ AutoBindEditor
+  - 所有 FullScreen Panel 继承 BasePanel，back 按钮统一调用 OnBack()
+  - UIManager 含导航历史栈 + 弹窗叠加 + 生命周期回调 + SwapPopup
+  - 面板过渡动画（FullScreen Fade 0.25s / Popup Scale+Fade 0.2s/0.15s）
+  - Settings Apply/Cancel 模式（预览不持久化，确认写PlayerPrefs）
+- ✅ 文字改为中文，字体使用 LiberationSans SDF（Deng SDF fallback）
+- ✅ 已知问题全部解决（注册→登录流程、离线模式区分）
 
-**已知问题：**
-1. ❌ Training状态无对应面板（阶段二内容）
+**当前待开发：**
+- ⏳ 阶段二：InputManager + 游戏UI（TrainingHUD、ErrorPopup、RealtimeScorePanel）
 
-**下一步：在独立UI场景中执行 Step 1.9 整合测试**
+**下一步：阶段二 InputManager + 游戏UI**
 
 ---
 
-### 文件夹结构（2026-05-19 整理后）✅
+### 文件夹结构（2026-06-07 更新）✅
 
 已按场景隔离方案整理完毕：
 ```
 Assets/
-├── Scenes/Subway/Demonstration.unity    ← 地铁站
-├── Scenes/UI/Login Scene.unity         ← 独立UI
+├── Scenes/
+│   ├── Subway/Demonstration.unity    ← 地铁站训练场景
+│   └── UI/Login Scene.unity         ← 独立UI场景
 ├── Subway/{Models,Materials,Prefabs,Textures,Meshes,Lighting}/
-├── Prefabs/Common/ + Prefabs/UI/
-└── Scripts/, StreamingAssets/, Fonts/ (共享)
+├── Scripts/
+│   ├── Game/GameState.cs             ← 游戏状态枚举
+│   ├── UI/                           ← 11个Panel + UIManager + BasePanel
+│   ├── Service/                      ← 3接口 + 3本地实现 + ServiceLocator + ScoreData
+│   └── Editor/                       ← AutoBindEditor + CJKFontCreator
+├── StreamingAssets/Videos/           ← 教学视频（只读）
+└── Fonts/                            ← 字体资源
 ```
 
 ---
@@ -243,29 +262,14 @@ Assets/
 - **验证**：面板能正常显示和关闭
 - **⏸ 确认点**：报告的布局和数据展示是否满意？
 
-#### Step 1.9 — 阶段一整合测试（待执行）
-- 全流程导航测试：登录 → 主菜单 → 各子面板跳转 → 返回
+#### Step 1.9 — 阶段一整合测试 ✅
+- 全流程导航测试：Home → Login(弹窗) → Home(已登录) → Lobby → 各子面板 → 返回
 - 确保所有UI状态正确切换，无死锁
 - ✅ 前置条件已满足（视频可播放，进度条可拖拽）
 - **⏸ 确认点**：整体流程是否通畅？有无需要调整的地方？
 
-### ✅ 阶段一重构（已完成）
-
-> UI已从地铁站场景中拆分。
-
-#### Step R.1 — 创建独立UI场景 ✅
-- 已创建 `Assets/Scenes/Login Scene.unity`
-- UIManager + LoginCanvas + 8个Panel 已迁移
-- Demonstation.unity 中地铁站模型保留
-
-#### Step R.2 — 修复布局 ✅
-- 所有8个Panel居中锚定，尺寸/间距已优化
-- ScoreReportPanel 包含 DetailPanel 子面板
-- HelpPanel 包含 KeyboardHelp/VRHelp 双模式子面板
-
-#### Step R.3 — 文件夹结构 ⚠️
-- Scenes/ 目录已创建
-- 其余目录待后续整理
+### ✅ 一阶段优化（已完成）
+### 下一阶段开启前：给出至少三种后续方向，询问用户意见
 
 ### 阶段二：InputManager基础层 + 游戏UI
 
@@ -398,61 +402,59 @@ Assets/
 ```csharp
 public enum GameState
 {
-    MainMenu,       // 主菜单
+    Home,           // 游戏主页（启动入口）
+    Lobby,          // 游戏大厅
     SceneSelect,    // 场景选择
     SkillSelect,    // 技能选择
     StudyVideo,     // 导学视频
-    Training,        // 训练中
-    Paused,          // 暂停
-    ScoreReport,     // 成绩报告
-    Settings,        // 设置
-    Help,            // 帮助
-    Login,           // 登录
+    Training,       // 训练中
+    Paused,         // 暂停
+    ScoreReport,    // 成绩报告
+    Settings,       // 设置
+    Help,           // 帮助
+    Login,          // 弹窗
+    Register        // 注册弹窗
 }
 ```
 
-### 7.2 UIManager 状态切换
+### 7.2 状态流转
+
+```
+启动 → Home (主页)
+         ├── [点击登录]  → Login (弹窗)  → 登录成功自动关闭回到 Home (已登录态)
+         │                   └── [注册入口] → Register (弹窗) → 完成回到 Login
+         ├── [离线模式]  → Lobby (受限：仅视频/帮助/设置)
+         ├── [设置]      → Settings → Apply/Cancel → 返回
+         ├── [帮助]      → Help → 返回
+         └── [进入大厅]  → Lobby (已登录，全功能)
+                             ├── [导学视频] → StudyVideo
+                             ├── [技能训练] → SceneSelect → SkillSelect → Training → ScoreReport
+                             ├── [设置]      → Settings
+                             └── [帮助]      → Help
+```
+
+### 7.3 UIManager 导航接口
 
 ```csharp
-// UIManager.cs
-public void SwitchState(GameState newState)
-{
-    // 1. 隐藏所有UI面板
-    HideAllPanels();
+// 全屏切换（压栈 + OnExit→OnEnter生命周期 + Fade动画 0.25s）
+public void SwitchState(GameState newState);
 
-    // 2. 根据状态显示对应面板
-    switch (newState)
-    {
-        case GameState.MainMenu:    homeMenu.SetActive(true); break;
-        case GameState.Training:    trainingHUD.SetActive(true); break;
-        // ...
-    }
+// 出栈返回（OnExit + Fade动画）
+public void GoBack();
 
-    // 3. 通知 GameStateMachine
-    if (GameStateMachine.Instance != null)
-        GameStateMachine.Instance.Transition(newState);
-}
+// 弹窗叠加（Scale+Fade动画 0.2s）
+public void ShowPopup(GameState popupState);
+
+// 关闭弹窗（Fade+Scale动画 0.15s，通知底层面板刷新）
+public void HidePopup();
 ```
 
-### 7.3 键盘快捷键全局监听
+GameStateMachine 已删除。状态追踪、导航历史、生命周期回调统一由 UIManager 管理。
 
-```csharp
-// 在 UIManager.Update() 中
-void Update()
-{
-    // ESC 全局处理
-    if (Input.GetKeyDown(KeyCode.Escape))
-    {
-        HandleEscape();
-    }
+### 7.4 键盘快捷键
 
-    // Tab 切换评分面板
-    if (Input.GetKeyDown(KeyCode.Tab))
-    {
-        realtimeScorePanel.Toggle();
-    }
-}
-```
+- ESC：优先关闭弹窗，否则 GoBack 返回上级
+- Tab：切换评分面板（阶段二实现）
 
 ---
 

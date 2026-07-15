@@ -1,0 +1,43 @@
+{
+  "type": "icon",
+  "goal": "训练模式入口图标，用于 HomeMenuPanel 进入训练场景",
+  "subject": {
+    "concept": "站立人物轮廓，双手微张姿态，代表训练/实操",
+    "symbolism": "实践操作、人体模型、急救演练，VR训练场景的象征"
+  },
+  "style": {
+    "rendering": "线性图标（line icon），纯描边无填充",
+    "color": "#00B4D8",
+    "stroke": "2px",
+    "stroke_linecap": "round",
+    "stroke_linejoin": "round",
+    "fill": "none",
+    "corner_radius": "2px",
+    "background": "transparent"
+  },
+  "layout": {
+    "size": "128x128 px",
+    "padding": "16px 安全区",
+    "alignment": "水平垂直居中"
+  },
+  "prompt": "A minimalist line-art icon of a standing human figure in a training pose, showing head circle, torso, arms slightly open in ready position, and legs in stable stance, single color #00B4D8 (cyan blue) on transparent background, 128x128 pixels, clean modern style, 2px uniform stroke with round linecap and linejoin, no fill, no gradient, no shadow, centered with 16px safe area padding, vector-style clean edges, simple anatomical outline suggesting CPR training posture, suitable for VR medical training application",
+  "constraints": {
+    "must_keep": [
+      "2px 描边粗细",
+      "round linecap 和 linejoin",
+      "人物轮廓可辨识",
+      "居中对齐",
+      "#00B4D8 单色",
+      "透明背景"
+    ],
+    "avoid": [
+      "填充色块",
+      "渐变",
+      "阴影",
+      "过于复杂的人体细节",
+      "面部表情",
+      "衣物褶皱",
+      "卡通风格"
+    ]
+  }
+}
