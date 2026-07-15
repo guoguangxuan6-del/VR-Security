@@ -4,6 +4,15 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/UI/Login Scene.unity
+    guid: 3a2d1e7a31a5d4529ce6eb77add1725e
+  - enabled: 1
+    path: Assets/Scenes/Training/CPRTraining.unity
+    guid: 290e97bc4076df7007772bb6b627f08a
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a1dfead69adc7ac4a9837fbdb00d39d3, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: b69506b7c237797449da4c600a7ba2c4, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e38e8a1f2a3565c4fa4d76631934b16f, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 8d01ee30d50717949b3a175b8ff8d873, type: 2}

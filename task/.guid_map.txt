@@ -1,0 +1,5 @@
+3a2d1e7a31a5d4529ce6eb77add1725e Assets\Scenes\UI\Login Scene.unity.meta
+290e97bc4076df7007772bb6b627f08a Assets\Scenes\Training\CPRTraining.unity.meta
+66a131364223bde0c20255e7dee01116 Assets\Scenes\Training.meta
+f8eebad4c3086e9621fd66567f3e1956 Assets\Materials.meta
+23eae5d75da015abc94bce6e0e670bff Assets\Materials\M_Ground_Gray.mat.meta
