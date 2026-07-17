@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HelpPanel : MonoBehaviour
+public class HelpPanel : BasePanel
 {
     [Header("Mode Panels")]
     [SerializeField] private GameObject keyboardHelp;
@@ -42,6 +42,6 @@ public class HelpPanel : MonoBehaviour
 
     void OnBackClicked()
     {
-        UIManager.Instance.SwitchState(GameState.MainMenu);
+        OnBack();
     }
 }

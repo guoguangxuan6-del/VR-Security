@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SceneSelectPanel : MonoBehaviour
+public class SceneSelectPanel : BasePanel
 {
     [Header("Scene Cards")]
     [SerializeField] private Button subwayCard;
@@ -42,6 +42,6 @@ public class SceneSelectPanel : MonoBehaviour
 
     void OnBackClicked()
     {
-        UIManager.Instance.SwitchState(GameState.MainMenu);
+        OnBack();
     }
 }

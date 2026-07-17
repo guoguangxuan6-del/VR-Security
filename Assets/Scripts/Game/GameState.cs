@@ -1,6 +1,7 @@
 public enum GameState
 {
-    MainMenu,
+    Home,           // 游戏主页（启动入口）
+    Lobby,          // 游戏大厅
     SceneSelect,
     SkillSelect,
     StudyVideo,
@@ -9,5 +10,6 @@ public enum GameState
     ScoreReport,
     Settings,
     Help,
-    Login
+    Login,          // 弹窗
+    Register        // 注册弹窗
 }
