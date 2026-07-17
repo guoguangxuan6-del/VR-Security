@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SettingsPanel : MonoBehaviour
+public class SettingsPanel : BasePanel
 {
     [Header("Volume Controls")]
     [SerializeField] private Slider masterVolumeSlider;
@@ -13,25 +13,27 @@ public class SettingsPanel : MonoBehaviour
     [SerializeField] private TMP_Dropdown resolutionDropdown;
 
     [Header("Buttons")]
+    [SerializeField] private Button applyButton;
+    [SerializeField] private Button cancelButton;
     [SerializeField] private Button resetDataButton;
     [SerializeField] private Button backButton;
 
     private IScoreRepository scoreRepository;
+
+    private float originalMaster;
+    private float originalVoice;
+    private float originalBGM;
+    private int originalResolution;
+
+    private bool hasApplyCancel;
+    private bool hasChanges;
 
     void Start()
     {
         AutoBind();
         scoreRepository = ServiceLocator.Instance.ScoreRepository;
 
-        masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume", 0.8f);
-        voiceVolumeSlider.value = PlayerPrefs.GetFloat("VoiceVolume", 0.8f);
-        BGMVolumeSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.6f);
-
-        resolutionDropdown.ClearOptions();
-        resolutionDropdown.AddOptions(new System.Collections.Generic.List<string> {
-            "1920x1080", "1280x720", "800x600"
-        });
-        resolutionDropdown.value = PlayerPrefs.GetInt("Resolution", 0);
+        hasApplyCancel = applyButton != null && cancelButton != null;
 
         masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeChanged);
         voiceVolumeSlider.onValueChanged.AddListener(OnVoiceVolumeChanged);
@@ -39,6 +41,18 @@ public class SettingsPanel : MonoBehaviour
         resolutionDropdown.onValueChanged.AddListener(OnResolutionChanged);
         resetDataButton.onClick.AddListener(OnResetDataClicked);
         backButton.onClick.AddListener(OnBackClicked);
+
+        if (applyButton != null)
+            applyButton.onClick.AddListener(OnApplyClicked);
+        if (cancelButton != null)
+            cancelButton.onClick.AddListener(OnCancelClicked);
+    }
+
+    public override void OnEnter(object data)
+    {
+        CaptureOriginals();
+        LoadFromPlayerPrefs();
+        SetApplyCancelVisible(false);
     }
 
     void AutoBind()
@@ -51,6 +65,10 @@ public class SettingsPanel : MonoBehaviour
             BGMVolumeSlider = transform.Find("BGMVolumeSlider")?.GetComponent<Slider>();
         if (resolutionDropdown == null)
             resolutionDropdown = transform.Find("ResolutionDropdown")?.GetComponent<TMP_Dropdown>();
+        if (applyButton == null)
+            applyButton = transform.Find("ApplyButton")?.GetComponent<Button>();
+        if (cancelButton == null)
+            cancelButton = transform.Find("CancelButton")?.GetComponent<Button>();
         if (resetDataButton == null)
             resetDataButton = transform.Find("ResetDataButton")?.GetComponent<Button>();
         if (backButton == null)
@@ -61,51 +79,130 @@ public class SettingsPanel : MonoBehaviour
         Debug.Assert(backButton != null, "[Settings] BackButton not found");
     }
 
+    void CaptureOriginals()
+    {
+        originalMaster = PlayerPrefs.GetFloat("MasterVolume", 0.8f);
+        originalVoice = PlayerPrefs.GetFloat("VoiceVolume", 0.8f);
+        originalBGM = PlayerPrefs.GetFloat("BGMVolume", 0.6f);
+        originalResolution = PlayerPrefs.GetInt("Resolution", 0);
+    }
+
+    void LoadFromPlayerPrefs()
+    {
+        masterVolumeSlider.SetValueWithoutNotify(originalMaster);
+        voiceVolumeSlider.SetValueWithoutNotify(originalVoice);
+        BGMVolumeSlider.SetValueWithoutNotify(originalBGM);
+
+        if (resolutionDropdown.options.Count == 0)
+        {
+            resolutionDropdown.AddOptions(new System.Collections.Generic.List<string> {
+                "1920x1080", "1280x720", "800x600"
+            });
+        }
+        resolutionDropdown.SetValueWithoutNotify(originalResolution);
+    }
+
+    void MarkChanged()
+    {
+        if (!hasApplyCancel) return;
+        hasChanges = true;
+        SetApplyCancelVisible(true);
+    }
+
+    void SetApplyCancelVisible(bool visible)
+    {
+        if (applyButton != null) applyButton.gameObject.SetActive(visible);
+        if (cancelButton != null) cancelButton.gameObject.SetActive(visible);
+    }
+
     void OnMasterVolumeChanged(float value)
     {
-        PlayerPrefs.SetFloat("MasterVolume", value);
         AudioListener.volume = value;
+        if (!hasApplyCancel) PlayerPrefs.SetFloat("MasterVolume", value);
+        MarkChanged();
     }
 
     void OnVoiceVolumeChanged(float value)
     {
-        PlayerPrefs.SetFloat("VoiceVolume", value);
+        if (!hasApplyCancel) PlayerPrefs.SetFloat("VoiceVolume", value);
+        MarkChanged();
     }
 
     void OnBGMVolumeChanged(float value)
     {
-        PlayerPrefs.SetFloat("BGMVolume", value);
+        if (!hasApplyCancel) PlayerPrefs.SetFloat("BGMVolume", value);
+        MarkChanged();
     }
 
     void OnResolutionChanged(int index)
     {
-        PlayerPrefs.SetInt("Resolution", index);
-        switch (index)
-        {
-            case 0: Screen.SetResolution(1920, 1080, Screen.fullScreen); break;
-            case 1: Screen.SetResolution(1280, 720, Screen.fullScreen); break;
-            case 2: Screen.SetResolution(800, 600, Screen.fullScreen); break;
-        }
+        ApplyResolution(index);
+        if (!hasApplyCancel) PlayerPrefs.SetInt("Resolution", index);
+        MarkChanged();
+    }
+
+    void OnApplyClicked()
+    {
+        PlayerPrefs.SetFloat("MasterVolume", masterVolumeSlider.value);
+        PlayerPrefs.SetFloat("VoiceVolume", voiceVolumeSlider.value);
+        PlayerPrefs.SetFloat("BGMVolume", BGMVolumeSlider.value);
+        PlayerPrefs.SetInt("Resolution", resolutionDropdown.value);
+        CaptureOriginals();
+        hasChanges = false;
+        SetApplyCancelVisible(false);
+    }
+
+    void OnCancelClicked()
+    {
+        RestoreOriginals();
+        hasChanges = false;
+        SetApplyCancelVisible(false);
     }
 
     void OnResetDataClicked()
     {
-        PlayerPrefs.DeleteKey("MasterVolume");
-        PlayerPrefs.DeleteKey("VoiceVolume");
-        PlayerPrefs.DeleteKey("BGMVolume");
-        PlayerPrefs.DeleteKey("Resolution");
-
         masterVolumeSlider.value = 0.8f;
         voiceVolumeSlider.value = 0.8f;
         BGMVolumeSlider.value = 0.6f;
         resolutionDropdown.value = 0;
 
         AudioListener.volume = 0.8f;
-        Screen.SetResolution(1920, 1080, Screen.fullScreen);
+        ApplyResolution(0);
+
+        if (!hasApplyCancel)
+        {
+            PlayerPrefs.DeleteKey("MasterVolume");
+            PlayerPrefs.DeleteKey("VoiceVolume");
+            PlayerPrefs.DeleteKey("BGMVolume");
+            PlayerPrefs.DeleteKey("Resolution");
+        }
     }
 
     void OnBackClicked()
     {
-        UIManager.Instance.SwitchState(GameState.MainMenu);
+        if (hasApplyCancel && hasChanges)
+            RestoreOriginals();
+        OnBack();
+    }
+
+    void RestoreOriginals()
+    {
+        masterVolumeSlider.SetValueWithoutNotify(originalMaster);
+        voiceVolumeSlider.SetValueWithoutNotify(originalVoice);
+        BGMVolumeSlider.SetValueWithoutNotify(originalBGM);
+        resolutionDropdown.SetValueWithoutNotify(originalResolution);
+
+        AudioListener.volume = originalMaster;
+        ApplyResolution(originalResolution);
+    }
+
+    void ApplyResolution(int index)
+    {
+        switch (index)
+        {
+            case 0: Screen.SetResolution(1920, 1080, Screen.fullScreen); break;
+            case 1: Screen.SetResolution(1280, 720, Screen.fullScreen); break;
+            case 2: Screen.SetResolution(800, 600, Screen.fullScreen); break;
+        }
     }
 }

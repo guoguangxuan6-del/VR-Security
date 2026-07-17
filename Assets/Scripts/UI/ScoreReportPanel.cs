@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ScoreReportPanel : MonoBehaviour
+public class ScoreReportPanel : BasePanel
 {
     [Header("Score Display")]
     [SerializeField] private TextMeshProUGUI totalScoreText;
@@ -101,6 +101,6 @@ public class ScoreReportPanel : MonoBehaviour
 
     void OnBackToMenuClicked()
     {
-        UIManager.Instance.SwitchState(GameState.MainMenu);
+        OnBack();
     }
 }

@@ -13,3 +13,7 @@
 *.pidb.meta
 *.pdb.meta
 .claude/
+# 内部开发文档（不影响其他协作者）
+/UI指导.md
+/一阶段优化意见.md
+/一阶段测试流程.md

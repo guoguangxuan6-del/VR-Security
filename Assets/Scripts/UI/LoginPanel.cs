@@ -8,8 +8,8 @@ public class LoginPanel : MonoBehaviour
     [SerializeField] private TMP_InputField usernameInput;
     [SerializeField] private TMP_InputField passwordInput;
     [SerializeField] private Button loginButton;
-    [SerializeField] private Button registerButton;
-    [SerializeField] private Button offlineButton;
+    [SerializeField] private Button registerEntryButton;
+    [SerializeField] private Button closeButton;
     [SerializeField] private TextMeshProUGUI messageText;
 
     private ILoginService loginService;
@@ -20,10 +20,17 @@ public class LoginPanel : MonoBehaviour
         loginService = ServiceLocator.Instance.LoginService;
 
         loginButton.onClick.AddListener(OnLoginClicked);
-        registerButton.onClick.AddListener(OnRegisterClicked);
-        offlineButton.onClick.AddListener(OnOfflineClicked);
+        registerEntryButton.onClick.AddListener(OnRegisterEntryClicked);
+        closeButton.onClick.AddListener(OnCloseClicked);
 
         messageText.text = "";
+    }
+
+    void OnEnable()
+    {
+        if (usernameInput != null) usernameInput.text = "";
+        if (passwordInput != null) passwordInput.text = "";
+        if (messageText != null) messageText.text = "";
     }
 
     void AutoBind()
@@ -34,10 +41,10 @@ public class LoginPanel : MonoBehaviour
             passwordInput = transform.Find("PasswordInput")?.GetComponent<TMP_InputField>();
         if (loginButton == null)
             loginButton = transform.Find("LoginButton")?.GetComponent<Button>();
-        if (registerButton == null)
-            registerButton = transform.Find("RegisterButton")?.GetComponent<Button>();
-        if (offlineButton == null)
-            offlineButton = transform.Find("OfflineButton")?.GetComponent<Button>();
+        if (registerEntryButton == null)
+            registerEntryButton = transform.Find("RegisterEntryButton")?.GetComponent<Button>();
+        if (closeButton == null)
+            closeButton = transform.Find("CloseButton")?.GetComponent<Button>();
         if (messageText == null)
             messageText = transform.Find("MessageText")?.GetComponent<TextMeshProUGUI>();
 
@@ -54,7 +61,7 @@ public class LoginPanel : MonoBehaviour
 
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
-            messageText.text = "Enter username and password";
+            messageText.text = "请输入用户名和密码";
             messageText.color = Color.red;
             return;
         }
@@ -63,48 +70,22 @@ public class LoginPanel : MonoBehaviour
         {
             messageText.text = "登录成功";
             messageText.color = Color.green;
-            UIManager.Instance.SwitchState(GameState.MainMenu);
+            UIManager.Instance.HidePopup();
         }
         else
         {
-            messageText.text = "用户名或密码无效";
+            messageText.text = "用户名或密码错误";
             messageText.color = Color.red;
         }
     }
 
-    void OnRegisterClicked()
+    void OnRegisterEntryClicked()
     {
-        string username = usernameInput.text.Trim();
-        string password = passwordInput.text;
-
-        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-        {
-            messageText.text = "请输入用户名和密码";
-            messageText.color = Color.red;
-            return;
-        }
-
-        if (password.Length < 6)
-        {
-            messageText.text = "密码必须至少包含6个字符";
-            messageText.color = Color.red;
-            return;
-        }
-
-        if (loginService.Register(username, password))
-        {
-            messageText.text = "注册成功，请登录";
-            messageText.color = Color.green;
-        }
-        else
-        {
-            messageText.text = "用户名已存在";
-            messageText.color = Color.red;
-        }
+        UIManager.Instance.ShowPopup(GameState.Register);
     }
 
-    void OnOfflineClicked()
+    void OnCloseClicked()
     {
-        UIManager.Instance.SwitchState(GameState.MainMenu);
+        UIManager.Instance.HidePopup();
     }
 }
