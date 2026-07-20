@@ -1,0 +1,44 @@
+{
+  "type": "logo",
+  "goal": "Life Guard VR 品牌标识，用于启动画面、登录页和关于页面",
+  "subject": {
+    "concept": "心形与盾牌的融合设计，心形嵌入盾牌轮廓内，盾牌顶部有医疗十字",
+    "symbolism": "守护生命、医疗急救、安全保障，与小程序品牌保持一致的视觉识别"
+  },
+  "style": {
+    "rendering": "线性图标（line icon），纯描边无填充，可有轻微的品牌感",
+    "color": "#00B4D8",
+    "stroke": "2px",
+    "stroke_linecap": "round",
+    "stroke_linejoin": "round",
+    "fill": "none",
+    "corner_radius": "2px",
+    "background": "transparent"
+  },
+  "layout": {
+    "size": "512x512 px",
+    "padding": "48px 安全区",
+    "alignment": "水平垂直居中"
+  },
+  "prompt": "A modern logo icon for Life Guard VR medical training platform, featuring a stylized heart shape centered inside a shield outline, the shield has a classic pointed bottom and curved sides, a small medical cross symbol at the top of the shield, single color #00B4D8 (cyan blue) on transparent background, 512x512 pixels, clean minimalist line-art design, 2px uniform stroke with round linecap and linejoin, no fill, no gradient, no shadow, centered with 48px safe area padding, vector-style clean edges, professional and trustworthy medical branding, the heart and shield are visually unified as one symbol",
+  "constraints": {
+    "must_keep": [
+      "2px 描边粗细",
+      "round linecap 和 linejoin",
+      "心形 + 盾牌组合",
+      "居中对齐",
+      "#00B4D8 品牌色",
+      "透明背景",
+      "与小程序 Logo 概念一致"
+    ],
+    "avoid": [
+      "填充色块",
+      "渐变",
+      "阴影",
+      "文字或字母",
+      "过于复杂的装饰",
+      "血腥 imagery",
+      "卡通风格"
+    ]
+  }
+}

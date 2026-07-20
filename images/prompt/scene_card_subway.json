@@ -1,0 +1,40 @@
+{
+  "type": "card",
+  "goal": "SceneSelectPanel 中的地铁站场景选择卡片",
+  "subject": {
+    "concept": "现代地铁站台场景，有列车、站台和乘客区域",
+    "symbolism": "公共场所急救、突发状况应对、地铁场景的紧急救援训练"
+  },
+  "style": {
+    "rendering": "介于扁平和立体之间，有轻微深度感的概念艺术",
+    "background": "rgba(20, 20, 50, 0.9) 卡片底色",
+    "border": "1px solid rgba(0, 180, 216, 0.2)",
+    "corner_radius": "12px",
+    "image_tone": "深蓝黑为主，蓝色灯光点缀，冷色调氛围"
+  },
+  "layout": {
+    "size": "512x384 px",
+    "image_area": "上半部分约 70% 为场景图",
+    "text_area": "下半部分约 30% 预留给文字标题（不渲染文字）",
+    "perspective": "略微俯视的站台视角"
+  },
+  "prompt": "A concept art scene card of a modern subway station interior for VR medical training, showing a clean contemporary metro platform with a train on one side, platform columns, and waiting area, dark blue-black atmosphere with base colors #1A1A2E and #0D0D1A, blue accent lighting #00B4D8 from station lights and train windows, the scene is rendered in a semi-realistic concept art style with slight depth and atmospheric perspective, cold professional lighting, the upper 70% shows the full scene while the lower 30% is a darker gradient area, 512x384 resolution, cinematic composition with slight downward angle, no text, no UI overlays, no people faces visible (silhouettes acceptable), suitable as a selection card for VR training scenarios",
+  "constraints": {
+    "must_keep": [
+      "深蓝黑色调",
+      "#00B4D8 蓝色灯光点缀",
+      "地铁站可辨识",
+      "512x384 分辨率",
+      "下半部分留空给文字"
+    ],
+    "avoid": [
+      "血腥、恐怖 imagery",
+      "卡通/动漫风格",
+      "明亮的白色背景",
+      "清晰的人物面部",
+      "文字或UI元素",
+      "过于写实的照片风格",
+      "杂乱无章的场景"
+    ]
+  }
+}

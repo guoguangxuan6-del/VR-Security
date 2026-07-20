@@ -1,0 +1,41 @@
+{
+  "type": "card",
+  "goal": "SkillSelectPanel 中的 AED（自动体外除颤器）技能选择卡片",
+  "subject": {
+    "concept": "AED 设备示意图，带有电极贴片和闪电符号",
+    "symbolism": "心脏除颤、紧急电击复苏、高级急救设备，AED 是公共场所急救的关键设备"
+  },
+  "style": {
+    "rendering": "介于扁平和立体之间，有轻微深度感的概念艺术",
+    "background": "rgba(20, 20, 50, 0.9) 卡片底色",
+    "border": "1px solid rgba(0, 180, 216, 0.2)",
+    "corner_radius": "12px",
+    "image_tone": "深蓝黑为主，蓝色和警示金色点缀，医学设备风格"
+  },
+  "layout": {
+    "size": "512x384 px",
+    "image_area": "上半部分约 70% 为 AED 设备示意图",
+    "text_area": "下半部分约 30% 预留给文字标题（不渲染文字）",
+    "composition": "居中构图，设备展示风格"
+  },
+  "prompt": "A concept art illustration card showing an AED (Automated External Defibrillator) device for VR medical training, depicting a stylized AED unit with its screen displaying a heart rhythm, electrode pads with wires connected to the device, and a small lightning bolt symbol indicating defibrillation, abstract medical equipment diagram style, dark blue-black atmosphere with base colors #1A1A2E and #0D0D1A, blue accent lighting #00B4D8 on the device screen and edges, subtle yellow #FFD700 accent on the lightning symbol for warning, the rendering is between flat and dimensional with slight depth, cold professional medical lighting, the upper 70% shows the AED illustration while the lower 30% is a darker gradient area, 512x384 resolution, centered composition, no text, no UI overlays, no realistic gore, suitable as a skill selection card for VR training",
+  "constraints": {
+    "must_keep": [
+      "深蓝黑色调",
+      "#00B4D8 蓝色光效",
+      "AED 设备可辨识",
+      "512x384 分辨率",
+      "下半部分留空给文字",
+      "医学设备示意风格"
+    ],
+    "avoid": [
+      "血腥、恐怖 imagery",
+      "真实的医疗场景",
+      "卡通/动漫风格",
+      "明亮的白色背景",
+      "文字或UI元素",
+      "过于复杂的设备细节",
+      "令人不适的画面"
+    ]
+  }
+}

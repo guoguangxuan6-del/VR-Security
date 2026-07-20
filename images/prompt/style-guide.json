@@ -1,0 +1,161 @@
+{
+  "style_guide": {
+    "project": "Life Guard VR - 生息守护",
+    "description": "VR急救培训平台 UI 美术资源风格规范",
+    "design_philosophy": {
+      "core_concept": "科技守护生命 — 将医疗专业性与VR沉浸感融合",
+      "visual_identity_statement": "在深邃的科技蓝黑背景上，用冷冽的光线和精确的几何语言，传达'专业、可信、可依赖'的医疗培训氛围",
+      "mood": "严肃但不压抑，科技但不冰冷，专业但易接近",
+      "reference_styles": [
+        "HUD/Sci-Fi FUI — 沉浸式VR感",
+        "Glassmorphism — 毛玻璃面板层次感",
+        "Trust & Authority — 医疗专业可信度"
+      ]
+    },
+    "brand_connection_with_miniapp": {
+      "shared_identity": [
+        "同一品牌'Life Guard/生息守护'",
+        "心形+盾牌 Logo 概念延续",
+        "急救/医疗主题语境",
+        "线性图标风格（适配各自背景）"
+      ],
+      "platform_adaptation": {
+        "miniapp": "白色背景，#1890ff 蓝，轻量扁平，移动端触控",
+        "vr_platform": "深色背景，#00B4D8 蓝，沉浸立体，VR凝视交互"
+      }
+    },
+    "color_system": {
+      "primary": {
+        "hex": "#00B4D8",
+        "name": "生命蓝",
+        "usage": "主操作按钮、高亮状态、品牌标识、重要信息"
+      },
+      "primary_dark": {
+        "hex": "#0077B6",
+        "name": "深海蓝",
+        "usage": "按钮按下态、渐变终点、次要强调"
+      },
+      "primary_light": {
+        "hex": "#48CAE4",
+        "name": "天际蓝",
+        "usage": "发光边框、hover态、光线效果"
+      },
+      "success": {
+        "hex": "#44FF88",
+        "name": "生命绿",
+        "usage": "正确反馈、成功状态、通过标识"
+      },
+      "warning": {
+        "hex": "#FFD700",
+        "name": "警示金",
+        "usage": "警告提示、注意标识"
+      },
+      "error": {
+        "hex": "#FF4444",
+        "name": "警报红",
+        "usage": "错误反馈、危险操作、异常状态"
+      },
+      "background": {
+        "hex": "#1A1A2E",
+        "name": "深空蓝黑",
+        "usage": "主背景色"
+      },
+      "background_deep": {
+        "hex": "#0D0D1A",
+        "name": "深渊黑",
+        "usage": "渐变终点、最深层背景"
+      },
+      "text_primary": {
+        "hex": "#FFFFFF",
+        "name": "纯白",
+        "usage": "主要文字"
+      },
+      "text_secondary": {
+        "hex": "#E0E0E0",
+        "name": "柔灰",
+        "usage": "次要文字、说明文字"
+      },
+      "inactive": {
+        "hex": "#6B7280",
+        "name": "静默灰",
+        "usage": "未激活状态、禁用元素"
+      }
+    },
+    "icon_style": {
+      "rendering": "线性图标（line icon），无填充，纯描边",
+      "stroke_weight": "2px",
+      "stroke_linecap": "round",
+      "stroke_linejoin": "round",
+      "corner_radius": "2px",
+      "background": "transparent 或 #1A1A2E 深色背景",
+      "color_on_dark": "#00B4D8（主色）或 #FFFFFF（白）",
+      "color_inactive": "#6B7280",
+      "consistency_rules": [
+        "所有图标使用相同的 2px 描边粗细",
+        "所有图标使用 round linecap 和 linejoin",
+        "方形元素统一使用 2px 圆角",
+        "图标在画布中居中对齐",
+        "保持适当的内边距（safe area）",
+        "线条粗细均匀，无渐变，无阴影"
+      ]
+    },
+    "background_style": {
+      "rendering": "半写实/概念艺术风格，有深度感和氛围感",
+      "base_tone": "深蓝黑 #1A1A2E → #0D0D1A 渐变",
+      "lighting": "冷色调为主，蓝色环境光 #00B4D8 作为点缀",
+      "effects": [
+        "轻微粒子效果（悬浮光点）",
+        "光线散射（volumetric light）",
+        "六边形/分子网格纹理（暗示医疗科学）",
+        "全息投影感的数据可视化元素"
+      ],
+      "mood_keywords": ["科技", "医疗", "专业", "沉浸", "可信"]
+    },
+    "panel_style": {
+      "rendering": "毛玻璃/玻璃拟态（Glassmorphism）",
+      "background": "rgba(10, 10, 30, 0.85) — 深色半透明",
+      "border": "1px solid rgba(0, 180, 216, 0.3) — 微弱蓝色发光边框",
+      "corner_radius": "16px",
+      "backdrop_blur": "10-15px（实际效果在Unity中用CanvasGroup模拟）",
+      "glow_effect": "外发光 rgba(0, 180, 216, 0.15)"
+    },
+    "card_style": {
+      "rendering": "介于扁平和立体之间，有轻微深度感",
+      "background": "rgba(20, 20, 50, 0.9)",
+      "border": "1px solid rgba(0, 180, 216, 0.2)",
+      "corner_radius": "12px",
+      "hover_effect": "边框亮度提升 + 轻微放大 scale(1.02)",
+      "image_area": "卡片上半部分为图片，下半部分为文字说明"
+    },
+    "button_style": {
+      "primary": {
+        "background": "linear-gradient(135deg, #00B4D8, #0077B6)",
+        "text": "#FFFFFF",
+        "corner_radius": "8px",
+        "glow": "0 0 15px rgba(0, 180, 216, 0.3)"
+      },
+      "secondary": {
+        "background": "rgba(107, 114, 128, 0.3)",
+        "text": "#E0E0E0",
+        "border": "1px solid rgba(107, 114, 128, 0.5)",
+        "corner_radius": "8px"
+      },
+      "danger": {
+        "background": "rgba(255, 68, 68, 0.2)",
+        "text": "#FF4444",
+        "border": "1px solid rgba(255, 68, 68, 0.5)",
+        "corner_radius": "8px"
+      }
+    },
+    "avoid": [
+      "血腥、恐怖、令人不适的医疗 imagery",
+      "卡通/动漫风格",
+      "过于复杂的细节（图标类）",
+      "填充色块（图标类）",
+      "渐变（图标类）",
+      "阴影（图标类）",
+      "与医疗/急救无关的装饰元素",
+      "明亮的白色背景（破坏沉浸感）"
+    ]
+  }
+}

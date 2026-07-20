@@ -1,0 +1,43 @@
+{
+  "type": "icon",
+  "goal": "用户/账号图标，用于登录状态显示和用户信息入口",
+  "subject": {
+    "concept": "人物头像轮廓，圆形头部加肩部弧线",
+    "symbolism": "用户身份、个人账户、学员信息，VR培训系统的用户标识"
+  },
+  "style": {
+    "rendering": "线性图标（line icon），纯描边无填充",
+    "color": "#00B4D8",
+    "stroke": "2px",
+    "stroke_linecap": "round",
+    "stroke_linejoin": "round",
+    "fill": "none",
+    "corner_radius": "2px",
+    "background": "transparent"
+  },
+  "layout": {
+    "size": "128x128 px",
+    "padding": "16px 安全区",
+    "alignment": "水平垂直居中"
+  },
+  "prompt": "A minimalist line-art icon of a user avatar, showing a circle for the head positioned in the upper portion and a curved arc below representing the shoulders and upper body silhouette, single color #00B4D8 (cyan blue) on transparent background, 128x128 pixels, clean modern style, 2px uniform stroke with round linecap and linejoin, no fill, no gradient, no shadow, centered with 16px safe area padding, vector-style clean edges, standard user profile icon shape, suitable for VR medical training application",
+  "constraints": {
+    "must_keep": [
+      "2px 描边粗细",
+      "round linecap 和 linejoin",
+      "头部圆形 + 肩部弧线",
+      "居中对齐",
+      "#00B4D8 单色",
+      "透明背景"
+    ],
+    "avoid": [
+      "填充色块",
+      "渐变",
+      "阴影",
+      "面部五官细节",
+      "衣物细节",
+      "手臂",
+      "卡通风格"
+    ]
+  }
+}

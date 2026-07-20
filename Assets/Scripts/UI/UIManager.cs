@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -92,7 +93,11 @@ public class UIManager : MonoBehaviour
             ShowPopup(newState);
             return;
         }
-
+        if (newState == GameState.Training)
+        {
+            SceneManager.LoadScene("CPRTraining");
+            return;
+        }
         if (isAnimating) return;
 
         // OnExit current panel

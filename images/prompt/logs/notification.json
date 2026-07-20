@@ -1,0 +1,34 @@
+[
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "hook_event_name": "Notification",
+    "message": "Claude is waiting for your input",
+    "notification_type": "idle_prompt"
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "hook_event_name": "Notification",
+    "message": "Claude needs your permission",
+    "notification_type": "permission_prompt"
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "hook_event_name": "Notification",
+    "message": "Claude needs your permission",
+    "notification_type": "permission_prompt"
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "hook_event_name": "Notification",
+    "message": "Claude is waiting for your input",
+    "notification_type": "idle_prompt"
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "type": "icon",
+  "goal": "主页导航图标，用于各级面板返回主页的快捷入口",
+  "subject": {
+    "concept": "简约房屋轮廓，三角形屋顶加矩形屋身",
+    "symbolism": "安全、归宿、核心入口，VR应用的主界面入口"
+  },
+  "style": {
+    "rendering": "线性图标（line icon），纯描边无填充",
+    "color": "#00B4D8",
+    "stroke": "2px",
+    "stroke_linecap": "round",
+    "stroke_linejoin": "round",
+    "fill": "none",
+    "corner_radius": "2px",
+    "background": "transparent"
+  },
+  "layout": {
+    "size": "128x128 px",
+    "padding": "16px 安全区",
+    "alignment": "水平垂直居中"
+  },
+  "prompt": "A minimalist line-art icon of a simple house silhouette, showing a triangular roof on top of a rectangular body, with a small rectangular door in the center bottom, single color #00B4D8 (cyan blue) on transparent background, 128x128 pixels, clean modern style, 2px uniform stroke with round linecap and linejoin, no fill, no gradient, no shadow, centered with 16px safe area padding, vector-style clean edges, standard home icon shape, suitable for VR medical training application",
+  "constraints": {
+    "must_keep": [
+      "2px 描边粗细",
+      "round linecap 和 linejoin",
+      "房屋形状可辨识（三角屋顶+矩形屋身）",
+      "居中对齐",
+      "#00B4D8 单色",
+      "透明背景"
+    ],
+    "avoid": [
+      "填充色块",
+      "渐变",
+      "阴影",
+      "烟囱",
+      "窗户（保持简洁）",
+      "过于复杂的建筑细节"
+    ]
+  }
+}

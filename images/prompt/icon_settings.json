@@ -1,0 +1,43 @@
+{
+  "type": "icon",
+  "goal": "设置页面入口图标，用于 HomeMenuPanel 进入 SettingsPanel",
+  "subject": {
+    "concept": "齿轮/机械轮形状，代表系统设置与配置",
+    "symbolism": "调节、控制、系统配置，VR环境参数设置"
+  },
+  "style": {
+    "rendering": "线性图标（line icon），纯描边无填充",
+    "color": "#00B4D8",
+    "stroke": "2px",
+    "stroke_linecap": "round",
+    "stroke_linejoin": "round",
+    "fill": "none",
+    "corner_radius": "2px",
+    "background": "transparent"
+  },
+  "layout": {
+    "size": "128x128 px",
+    "padding": "16px 安全区",
+    "alignment": "水平垂直居中"
+  },
+  "prompt": "A minimalist line-art icon of a gear/cog wheel, showing a circular outline with 6 evenly spaced rectangular teeth protruding outward and a small circle in the center, single color #00B4D8 (cyan blue) on transparent background, 128x128 pixels, clean modern style, 2px uniform stroke with round linecap and linejoin, no fill, no gradient, no shadow, centered with 16px safe area padding, vector-style clean edges, simple and recognizable gear shape, suitable for VR medical training application",
+  "constraints": {
+    "must_keep": [
+      "2px 描边粗细",
+      "round linecap 和 linejoin",
+      "齿轮形状可辨识",
+      "居中对齐",
+      "#00B4D8 单色",
+      "透明背景",
+      "中心小圆孔"
+    ],
+    "avoid": [
+      "填充色块",
+      "渐变",
+      "阴影",
+      "过多齿数（6个为佳）",
+      "过于复杂的机械细节",
+      "齿轮形状变形"
+    ]
+  }
+}

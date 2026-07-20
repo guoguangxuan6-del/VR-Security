@@ -1,0 +1,42 @@
+{
+  "type": "icon",
+  "goal": "重试/刷新操作图标，用于训练失败后的重试按钮",
+  "subject": {
+    "concept": "圆形循环箭头，代表重新开始、刷新",
+    "symbolism": "重试、循环、再次挑战，急救训练的反复练习"
+  },
+  "style": {
+    "rendering": "线性图标（line icon），纯描边无填充",
+    "color": "#00B4D8",
+    "stroke": "2px",
+    "stroke_linecap": "round",
+    "stroke_linejoin": "round",
+    "fill": "none",
+    "corner_radius": "2px",
+    "background": "transparent"
+  },
+  "layout": {
+    "size": "128x128 px",
+    "padding": "16px 安全区",
+    "alignment": "水平垂直居中"
+  },
+  "prompt": "A minimalist line-art icon of a refresh/retry symbol, showing a circular arrow that loops around almost completely with a small gap, the arrowhead points clockwise at the end, single color #00B4D8 (cyan blue) on transparent background, 128x128 pixels, clean modern style, 2px uniform stroke with round linecap and linejoin, no fill, no gradient, no shadow, centered with 16px safe area padding, vector-style clean edges, approximately 270-degree arc with arrowhead, suitable for VR medical training application",
+  "constraints": {
+    "must_keep": [
+      "2px 描边粗细",
+      "round linecap 和 linejoin",
+      "循环箭头方向清晰",
+      "居中对齐",
+      "#00B4D8 单色",
+      "透明背景"
+    ],
+    "avoid": [
+      "填充色块",
+      "渐变",
+      "阴影",
+      "双箭头（只用单个箭头）",
+      "完全闭合的圆环",
+      "过于复杂的循环设计"
+    ]
+  }
+}

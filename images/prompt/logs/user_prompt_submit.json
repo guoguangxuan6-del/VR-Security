@@ -1,0 +1,18 @@
+[
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "default",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "\u6fb6\u6c2b\u91dcimages\u6d93\u5d88\udca6\u4f77\u7af4\u5a06\u2103\udc80\u0445\u6553\u93b4\u605crompt\u951b\u5c7e\u7621\u6d93\u7306I\u95ae\u4ecb\u6e36\u7455\u4f77\u7af4\u6d93\udcaa\u9419\udcac\u7ed4\u5b2c\u6b91prompt\u951b\u5c80\u2018\u6dc7\u6fc6\u6087prompt\u690b\u5ea2\u7278\u6d93\udc80\u9477\u8fbe\u7d1d\u9359\u6828\u79f7all_prompts\u951b\u5c7c\u7d98\u95c7\udc80\u7455\u4f78\udcaf\u89c4\u6e70\u6924\u572d\u6d30\u6769\u6d9c\udca1\u5c7e\u7e41\u6434\ufe3e\u6b91\u93ac\u6fca\udc80\u51bf\u7d1d\u7ead\udcae\u7039\u6c2c\u6087UI\u690b\u5ea2\u7278\u951b\u5c84\u6ba2\u935a\u5ea4\udcae\u2541\u74d9Agent\u9422\u71b8\u579a\u7eee\u5267\u2018\u7039\u5c80\u7de8\u9428\u523erompt\u951b\u5c80\u6553\u93b4\u612c\u6097\u9422\u53d8\u7d98\u6769\u6d9c\udca1\u5c7d\udcae\u2103\u7161\u951b\u5c7c\u7d98\u9359\udcaf\u6d60\u30e9\u69c4\u7487\udcbb'/c/Users/laotie_nb666/Desktop/Life Guard/Life Guard Mini Program/images/prompts'\u951b\u5c83\u7e56\u93c4\udcaf\u93c8\udcac\u6924\u572d\u6d30\u704f\u5fd5\u25bc\u6434\u5fd5\udcab\udcaf\u9428\u52eb\u6087\u9365\u5267\u5896\u93bb\u612e\u305a\u7487\u5d8f\u7d1d\u9359\udcaf\u6d60\u30e5\u5f2c\u9470\u51ae\udca3\u5ea2\u7278\u951b\u5c80\u6571\u6d63\u72b2\u5585\u7039\u6c2d\u69f8\u935a\ufe40\u5f2c\u9470\udc83"
+  },
+  {
+    "session_id": "d5cd77be-13be-49db-99d8-e98b295512d4",
+    "transcript_path": "C:\\Users\\laotie_nb666\\.claude\\projects\\C--Users-laotie-nb666-Desktop-Life-Guard-Life-Guard\\d5cd77be-13be-49db-99d8-e98b295512d4.jsonl",
+    "cwd": "C:\\Users\\laotie_nb666\\Desktop\\Life Guard\\Life Guard\\images\\prompt",
+    "permission_mode": "acceptEdits",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "\u690b\u5ea2\u7278\u93b8\u56e7\u5d21\u93b4\u621c\u7b09\u5a4a\u2103\u5270\u951b\u5c7c\u7d98\u9359\udcaf\u6d60\u30e8\udcae\u5757\u68f6'/d/Skills and plugins/design/skills'\u95ab\u590a\u5f47U\u9429\u7a3f\u53e7\u9428\u5246kills\u6769\u6d9c\udca1\u5c84\u5678\u93c2\u7248\u6335\u9350\udc99"
+  }
+]

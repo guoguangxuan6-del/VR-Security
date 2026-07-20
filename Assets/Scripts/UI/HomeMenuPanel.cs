@@ -9,7 +9,6 @@ public class HomeMenuPanel : BasePanel
     [SerializeField] private Button btnSettings;
     [SerializeField] private Button btnHelp;
     [SerializeField] private Button exitButton;
-    [SerializeField] private Button backButton;
 
     private ILoginService loginService;
 
@@ -47,8 +46,6 @@ public class HomeMenuPanel : BasePanel
             btnHelp = transform.Find("BtnHelp")?.GetComponent<Button>();
         if (exitButton == null)
             exitButton = transform.Find("ExitButton")?.GetComponent<Button>();
-        if (backButton == null)
-            backButton = transform.Find("BackButton")?.GetComponent<Button>();
 
         Debug.Assert(btnStudyVideo != null, "[HomeMenu] BtnStudyVideo not found");
         Debug.Assert(btnSkillTraining != null, "[HomeMenu] BtnSkillTraining not found");

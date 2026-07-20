@@ -1,0 +1,42 @@
+{
+  "type": "icon",
+  "goal": "返回导航图标，用于各级面板的返回按钮",
+  "subject": {
+    "concept": "向左的箭头，代表返回上一级",
+    "symbolism": "回退、导航返回、层级回溯，VR界面的返回操作"
+  },
+  "style": {
+    "rendering": "线性图标（line icon），纯描边无填充",
+    "color": "#00B4D8",
+    "stroke": "2px",
+    "stroke_linecap": "round",
+    "stroke_linejoin": "round",
+    "fill": "none",
+    "corner_radius": "2px",
+    "background": "transparent"
+  },
+  "layout": {
+    "size": "128x128 px",
+    "padding": "16px 安全区",
+    "alignment": "水平垂直居中"
+  },
+  "prompt": "A minimalist line-art icon of a left-pointing arrow, consisting of a horizontal line with an arrowhead pointing left at the tip, the arrowhead is formed by two diagonal lines meeting at a point, single color #00B4D8 (cyan blue) on transparent background, 128x128 pixels, clean modern style, 2px uniform stroke with round linecap and linejoin, no fill, no gradient, no shadow, centered with 16px safe area padding, vector-style clean edges, simple and clear navigation arrow, suitable for VR medical training application",
+  "constraints": {
+    "must_keep": [
+      "2px 描边粗细",
+      "round linecap 和 linejoin",
+      "箭头方向明确向左",
+      "居中对齐",
+      "#00B4D8 单色",
+      "透明背景"
+    ],
+    "avoid": [
+      "填充色块",
+      "渐变",
+      "阴影",
+      "箭头过于复杂",
+      "圆形外框（保持简洁箭头）",
+      "箭头方向不明确"
+    ]
+  }
+}

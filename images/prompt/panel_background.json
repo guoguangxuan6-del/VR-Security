@@ -1,0 +1,42 @@
+{
+  "type": "panel",
+  "goal": "通用弹窗/面板背景，用于 LoginPanel、RegisterPanel 等弹窗容器",
+  "subject": {
+    "concept": "毛玻璃风格的半透明深色面板，带有微弱蓝色发光边框",
+    "symbolism": "层次感、信息隔离、UI容器，VR界面中的信息承载层"
+  },
+  "style": {
+    "rendering": "毛玻璃/玻璃拟态（Glassmorphism）风格",
+    "background": "rgba(10, 10, 30, 0.85) 深色半透明",
+    "border": "1px solid rgba(0, 180, 216, 0.3) 微弱蓝色发光边框",
+    "corner_radius": "16px",
+    "backdrop_blur": "10-15px 模糊效果",
+    "glow_effect": "外发光 rgba(0, 180, 216, 0.15)",
+    "inner_detail": "极微弱的对角线渐变增加质感"
+  },
+  "layout": {
+    "size": "512x512 px",
+    "padding": "24px 内边距区域",
+    "alignment": "居中对齐",
+    "border_glow": "四边均匀发光"
+  },
+  "prompt": "A glassmorphism style panel background for VR medical training application UI, a rectangular shape with 16px rounded corners, semi-transparent dark background rgba(10, 10, 30, 0.85), subtle 1px border in translucent cyan blue rgba(0, 180, 216, 0.3) with a soft outer glow effect, the surface has a very faint frosted glass texture with slight diagonal gradient for depth, the overall appearance is a dark translucent glass panel floating over a dark space, 512x512 resolution, the interior is clean and empty ready for UI content, no text, no buttons, no icons, centered composition with even glow on all edges, suitable as a container background for popup panels in VR application",
+  "constraints": {
+    "must_keep": [
+      "毛玻璃半透明效果",
+      "16px 圆角",
+      "蓝色微光边框",
+      "512x512 分辨率",
+      "深色基调",
+      "内部留空给UI内容"
+    ],
+    "avoid": [
+      "纯实色背景",
+      "过于明亮的边框",
+      "文字或UI元素",
+      "过于复杂的纹理",
+      "彩色渐变",
+      "过于强烈的发光效果"
+    ]
+  }
+}
