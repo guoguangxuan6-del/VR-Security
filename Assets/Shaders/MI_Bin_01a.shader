@@ -31,7 +31,7 @@ Shader "Unreal/MI_Bin_01a"
         [HideInInspector][ToggleUI]_EnableFogOnTransparent("Boolean", Float) = 1
         [HideInInspector]_CullModeForward("Float", Float) = 2
         [HideInInspector][Enum(Front, 1, Back, 2)]_TransparentCullMode("Float", Float) = 2
-        [HideInInspector][Enum(UnityEditor.Rendering.HighDefinition.OpaqueCullMode)]_OpaqueCullMode("Float", Float) = 2
+        [HideInInspector][Enum(UnityEngine.Rendering.OpaqueCullMode)]_OpaqueCullMode("Float", Float) = 2
         [HideInInspector]_ZTestDepthEqualForOpaque("Float", Int) = 4
         [HideInInspector][Enum(UnityEngine.Rendering.CompareFunction)]_ZTestTransparent("Float", Float) = 4
         [HideInInspector][ToggleUI]_TransparentBackfaceEnable("Boolean", Float) = 0
