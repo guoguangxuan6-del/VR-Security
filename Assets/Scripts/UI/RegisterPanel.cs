@@ -4,7 +4,6 @@ using TMPro;
 
 public class RegisterPanel : MonoBehaviour
 {
-    [Header("UI References")]
     [SerializeField] private TMP_InputField usernameInput;
     [SerializeField] private TMP_InputField passwordInput;
     [SerializeField] private TMP_InputField confirmPasswordInput;
@@ -27,36 +26,15 @@ public class RegisterPanel : MonoBehaviour
         messageText.text = "";
     }
 
-    void OnEnable()
-    {
-        if (usernameInput != null) usernameInput.text = "";
-        if (passwordInput != null) passwordInput.text = "";
-        if (confirmPasswordInput != null) confirmPasswordInput.text = "";
-        if (messageText != null) messageText.text = "";
-    }
-
     void AutoBind()
     {
-        if (usernameInput == null)
-            usernameInput = transform.Find("UsernameInput")?.GetComponent<TMP_InputField>();
-        if (passwordInput == null)
-            passwordInput = transform.Find("PasswordInput")?.GetComponent<TMP_InputField>();
-        if (confirmPasswordInput == null)
-            confirmPasswordInput = transform.Find("ConfirmPasswordInput")?.GetComponent<TMP_InputField>();
-        if (registerButton == null)
-            registerButton = transform.Find("RegisterButton")?.GetComponent<Button>();
-        if (backToLoginButton == null)
-            backToLoginButton = transform.Find("BackToLoginButton")?.GetComponent<Button>();
-        if (closeButton == null)
-            closeButton = transform.Find("CloseButton")?.GetComponent<Button>();
-        if (messageText == null)
-            messageText = transform.Find("MessageText")?.GetComponent<TextMeshProUGUI>();
-
-        Debug.Assert(usernameInput != null, "[RegisterPanel] UsernameInput not found");
-        Debug.Assert(passwordInput != null, "[RegisterPanel] PasswordInput not found");
-        Debug.Assert(confirmPasswordInput != null, "[RegisterPanel] ConfirmPasswordInput not found");
-        Debug.Assert(registerButton != null, "[RegisterPanel] RegisterButton not found");
-        Debug.Assert(messageText != null, "[RegisterPanel] MessageText not found");
+        if (usernameInput == null) usernameInput = transform.Find("UsernameInput")?.GetComponent<TMP_InputField>();
+        if (passwordInput == null) passwordInput = transform.Find("PasswordInput")?.GetComponent<TMP_InputField>();
+        if (confirmPasswordInput == null) confirmPasswordInput = transform.Find("ConfirmPasswordInput")?.GetComponent<TMP_InputField>();
+        if (registerButton == null) registerButton = transform.Find("RegisterButton")?.GetComponent<Button>();
+        if (backToLoginButton == null) backToLoginButton = transform.Find("BackToLoginButton")?.GetComponent<Button>();
+        if (closeButton == null) closeButton = transform.Find("CloseButton")?.GetComponent<Button>();
+        if (messageText == null) messageText = transform.Find("MessageText")?.GetComponent<TextMeshProUGUI>();
     }
 
     void OnRegisterClicked()
@@ -88,8 +66,11 @@ public class RegisterPanel : MonoBehaviour
 
         if (loginService.Register(username, password))
         {
-            messageText.text = "注册成功";
+            messageText.text = "注册成功，已自动登录";
             messageText.color = Color.green;
+            // 注册成功后自动登录并跳转 Lobby
+            loginService.Login(username, password);
+            UIManager.Instance.OnLoginSuccess();
         }
         else
         {
@@ -100,11 +81,11 @@ public class RegisterPanel : MonoBehaviour
 
     void OnBackToLoginClicked()
     {
-        UIManager.Instance.SwapPopup(GameState.Login);
+        UIManager.Instance.NavigateTo("Login");
     }
 
     void OnCloseClicked()
     {
-        UIManager.Instance.HidePopup();
+        UIManager.Instance.GoBack();
     }
 }

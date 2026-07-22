@@ -10,6 +10,12 @@ public class LocalLoginService : ILoginService
 
     public bool IsLoggedIn => !string.IsNullOrEmpty(currentUser);
     public string CurrentUser => currentUser;
+    public string CurrentUsername => currentUser;
+
+    public void Logout()
+    {
+        currentUser = "";
+    }
 
     public LocalLoginService()
     {

@@ -7,30 +7,16 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
-    [Header("Fullscreen Panels")]
-    [SerializeField] private GameObject homePanel;
-    [SerializeField] private GameObject lobbyPanel;
-    [SerializeField] private GameObject settingsPanel;
-    [SerializeField] private GameObject helpPanel;
-    [SerializeField] private GameObject studyVideoPanel;
-    [SerializeField] private GameObject sceneSelectPanel;
-    [SerializeField] private GameObject skillSelectPanel;
-    [SerializeField] private GameObject scoreReportPanel;
-    [SerializeField] private GameObject trainingPlaceholderPanel;
+    [Header("Hologram Terminal")]
+    [SerializeField] private HologramTerminal hologramTerminal;
 
-    [Header("Popup Panels")]
-    [SerializeField] private GameObject loginPanel;
-    [SerializeField] private GameObject registerPanel;
+    // 导航状态（单一状态源）
+    private Stack<string> panelHistory = new Stack<string>();
+    private string currentPanelName = "Home";
+    private bool isAnimating = false;
 
-    private Stack<GameState> stateHistory = new Stack<GameState>();
-    private GameState currentState;
-    private bool hasPopup;
-    private bool isAnimating;
-    private bool hasNavigated;
-
-    const float FULLSCREEN_FADE_DURATION = 0.125f; // 一半时间做fade out, 一半做fade in, 总共0.25s
-    const float POPUP_OPEN_DURATION = 0.2f;
-    const float POPUP_CLOSE_DURATION = 0.15f;
+    // 自动收集所有面板引用
+    private Dictionary<string, GameObject> panelDict = new Dictionary<string, GameObject>();
 
     void Awake()
     {
@@ -40,268 +26,169 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        AutoBind();
-        SwitchState(GameState.Home);
+        if (hologramTerminal == null)
+            hologramTerminal = FindObjectOfType<HologramTerminal>();
+
+        // 自动收集面板
+        CollectPanels();
+
+        // 根据登录状态显示初始面板
+        ShowInitialPanel();
     }
 
-    void AutoBind()
+    /// <summary>
+    /// 自动收集 TerminalCanvas 下所有 Panel
+    /// </summary>
+    void CollectPanels()
     {
-        Canvas loginCanvas = GameObject.Find("LoginCanvas")?.GetComponent<Canvas>();
-        if (loginCanvas == null) return;
+        panelDict.Clear();
+        if (hologramTerminal == null) return;
+        var canvas = hologramTerminal.transform.Find("TerminalCanvas");
+        if (canvas == null) return;
 
-        if (homePanel == null)
-            homePanel = loginCanvas.transform.Find("HomePanel")?.gameObject;
-        if (lobbyPanel == null)
-            lobbyPanel = loginCanvas.transform.Find("LobbyPanel")?.gameObject;
-        if (settingsPanel == null)
-            settingsPanel = loginCanvas.transform.Find("SettingsPanel")?.gameObject;
-        if (helpPanel == null)
-            helpPanel = loginCanvas.transform.Find("HelpPanel")?.gameObject;
-        if (studyVideoPanel == null)
-            studyVideoPanel = loginCanvas.transform.Find("StudyVideoPanel")?.gameObject;
-        if (sceneSelectPanel == null)
-            sceneSelectPanel = loginCanvas.transform.Find("SceneSelectPanel")?.gameObject;
-        if (skillSelectPanel == null)
-            skillSelectPanel = loginCanvas.transform.Find("SkillSelectPanel")?.gameObject;
-        if (scoreReportPanel == null)
-            scoreReportPanel = loginCanvas.transform.Find("ScoreReportPanel")?.gameObject;
-        if (trainingPlaceholderPanel == null)
-            trainingPlaceholderPanel = loginCanvas.transform.Find("TrainingPlaceholderPanel")?.gameObject;
-        if (loginPanel == null)
-            loginPanel = loginCanvas.transform.Find("LoginPanel")?.gameObject;
-        if (registerPanel == null)
-            registerPanel = loginCanvas.transform.Find("RegisterPanel")?.gameObject;
-
-        Debug.Assert(homePanel != null, "[UIManager] homePanel not found");
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        foreach (Transform child in canvas)
         {
-            if (hasPopup)
-                HidePopup();
-            else
-                GoBack();
+            string name = child.name;
+            if (name.EndsWith("Panel"))
+            {
+                string key = name.Substring(0, name.Length - 5); // 去掉 "Panel"
+                panelDict[key] = child.gameObject;
+            }
         }
     }
 
-    public void SwitchState(GameState newState)
+    void ShowInitialPanel()
     {
-        if (newState == GameState.Login || newState == GameState.Register)
-        {
-            ShowPopup(newState);
-            return;
-        }
-        if (newState == GameState.Training)
-        {
-            SceneManager.LoadScene("CPRTraining");
-            return;
-        }
+        var loginService = ServiceLocator.Instance?.LoginService;
+        if (loginService != null && loginService.IsLoggedIn)
+            ResetTo("Lobby");
+        else
+            ResetTo("Home");
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // 导航方法
+    // ═══════════════════════════════════════════════════════════════
+
+    /// <summary>
+    /// 普通跳转（记录历史）
+    /// </summary>
+    public void NavigateTo(string panelName)
+    {
         if (isAnimating) return;
+        if (panelName == currentPanelName) return;
 
-        // OnExit current panel
-        GameObject oldPanel = GetActivePanel();
-        if (oldPanel != null && oldPanel.TryGetComponent<BasePanel>(out var oldBp))
-            oldBp.OnExit();
-
-        if (hasNavigated && currentState != newState)
-            stateHistory.Push(currentState);
-        hasNavigated = true;
-        currentState = newState;
-
-        StartCoroutine(TransitionFullScreen(newState, oldPanel));
+        panelHistory.Push(currentPanelName);
+        currentPanelName = panelName;
+        ShowPanel(panelName);
     }
 
+    /// <summary>
+    /// 返回上一级
+    /// </summary>
     public void GoBack()
     {
         if (isAnimating) return;
 
-        if (stateHistory.Count > 0)
+        if (panelHistory.Count > 0)
         {
-            GameObject oldPanel = GetActivePanel();
-            if (oldPanel != null && oldPanel.TryGetComponent<BasePanel>(out var oldBp))
-                oldBp.OnExit();
-
-            GameState prev = stateHistory.Pop();
-            currentState = prev;
-            StartCoroutine(TransitionFullScreen(prev, oldPanel));
+            currentPanelName = panelHistory.Pop();
+            ShowPanel(currentPanelName);
         }
-    }
-
-    public void ShowPopup(GameState popupState)
-    {
-        if (isAnimating) return;
-
-        hasPopup = true;
-        GameObject panel = popupState == GameState.Login ? loginPanel : registerPanel;
-        if (panel != null)
-            StartCoroutine(PopupOpen(panel));
-    }
-
-    public void SwapPopup(GameState popupState)
-    {
-        if (loginPanel != null) loginPanel.SetActive(false);
-        if (registerPanel != null) registerPanel.SetActive(false);
-        ShowPopup(popupState);
-    }
-
-    public void HidePopup()
-    {
-        if (isAnimating) return;
-
-        GameObject popup = loginPanel != null && loginPanel.activeSelf ? loginPanel : registerPanel;
-        if (popup != null)
-            StartCoroutine(PopupClose(popup));
         else
-            FinishHidePopup();
-    }
-
-    void FinishHidePopup()
-    {
-        hasPopup = false;
-        if (loginPanel != null) loginPanel.SetActive(false);
-        if (registerPanel != null) registerPanel.SetActive(false);
-
-        GameObject activePanel = GetActivePanel();
-        if (activePanel != null && activePanel.TryGetComponent<HomePanel>(out var hp))
-            hp.RefreshUI();
-    }
-
-    IEnumerator TransitionFullScreen(GameState targetState, GameObject oldPanel)
-    {
-        isAnimating = true;
-
-        // Fade out old panel
-        if (oldPanel != null)
-            yield return FadePanel(oldPanel, 1f, 0f, FULLSCREEN_FADE_DURATION);
-
-        HideAllPanels();
-
-        // Show and fade in new panel
-        GameObject newPanel = GetPanelForState(targetState);
-        if (newPanel != null)
         {
-            newPanel.SetActive(true);
-            SetPanelAlpha(newPanel, 0f);
-            yield return FadePanel(newPanel, 0f, 1f, FULLSCREEN_FADE_DURATION);
-
-            if (newPanel.TryGetComponent<BasePanel>(out var bp))
-                bp.OnEnter(null);
+            // 无历史，退出终端
+            hologramTerminal.DeactivateTerminal();
+            currentPanelName = "Home";
         }
-
-        isAnimating = false;
     }
 
-    IEnumerator PopupOpen(GameObject panel)
+    /// <summary>
+    /// 清栈跳转（登录成功/退出登录）
+    /// </summary>
+    public void ResetTo(string panelName)
     {
-        isAnimating = true;
-        panel.SetActive(true);
+        if (isAnimating) return;
 
-        CanvasGroup cg = panel.GetComponent<CanvasGroup>();
-        if (cg != null) cg.alpha = 0f;
+        panelHistory.Clear();
+        currentPanelName = panelName;
+        ShowPanel(panelName);
+    }
 
-        RectTransform rt = panel.GetComponent<RectTransform>();
-        if (rt != null) rt.localScale = Vector3.one * 0.5f;
+    // ═══════════════════════════════════════════════════════════════
+    // 面板切换
+    // ═══════════════════════════════════════════════════════════════
 
-        float elapsed = 0f;
-        while (elapsed < POPUP_OPEN_DURATION)
+    void ShowPanel(string panelName)
+    {
+        if (hologramTerminal == null) return;
+        hologramTerminal.ShowPanel(panelName);
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // 事件处理器（由 HologramTerminal 调用）
+    // ═══════════════════════════════════════════════════════════════
+
+    public void OnLoginSuccess()
+    {
+        ResetTo("Lobby");
+        // 刷新用户信息
+        var lobby = GetPanel("Lobby")?.GetComponent<HomeMenuPanel>();
+        lobby?.RefreshUserInfo();
+    }
+
+    public void OnLogout()
+    {
+        var loginService = ServiceLocator.Instance?.LoginService;
+        loginService?.Logout();
+        ResetTo("Home");
+    }
+
+    public void OnCancelButtonClicked()
+    {
+        hologramTerminal.DeactivateTerminal();
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // 兼容旧接口
+    // ═══════════════════════════════════════════════════════════════
+
+    public void SwitchState(GameState newState)
+    {
+        switch (newState)
         {
-            elapsed += Time.deltaTime;
-            float t = elapsed / POPUP_OPEN_DURATION;
-            float eased = 1f - (1f - t) * (1f - t); // ease-out
-
-            if (cg != null) cg.alpha = eased;
-            if (rt != null) rt.localScale = Vector3.one * Mathf.Lerp(0.5f, 1f, eased);
-
-            yield return null;
+            case GameState.Login: NavigateTo("Login"); break;
+            case GameState.Register: NavigateTo("Register"); break;
+            case GameState.Settings: NavigateTo("Settings"); break;
+            case GameState.Help: NavigateTo("Help"); break;
+            case GameState.StudyVideo: NavigateTo("StudyVideo"); break;
+            case GameState.SceneSelect: NavigateTo("SceneSelect"); break;
+            case GameState.SkillSelect: NavigateTo("SkillSelect"); break;
+            case GameState.ScoreReport: NavigateTo("ScoreReport"); break;
+            case GameState.Training: LoadTrainingScene(); break;
+            case GameState.Home: NavigateTo("Home"); break;
+            case GameState.Lobby: NavigateTo("Lobby"); break;
         }
-
-        if (cg != null) cg.alpha = 1f;
-        if (rt != null) rt.localScale = Vector3.one;
-
-        isAnimating = false;
     }
 
-    IEnumerator PopupClose(GameObject panel)
+    public void ShowPopup(GameState popupState) => SwitchState(popupState);
+    public void HidePopup() => GoBack();
+    public void SwapPopup(GameState popupState) => SwitchState(popupState);
+    public void OnBackButtonClicked() => GoBack();
+
+    // ═══════════════════════════════════════════════════════════════
+    // 工具方法
+    // ═══════════════════════════════════════════════════════════════
+
+    public GameObject GetPanel(string name)
     {
-        isAnimating = true;
-
-        CanvasGroup cg = panel.GetComponent<CanvasGroup>();
-        RectTransform rt = panel.GetComponent<RectTransform>();
-
-        float elapsed = 0f;
-        while (elapsed < POPUP_CLOSE_DURATION)
-        {
-            elapsed += Time.deltaTime;
-            float t = elapsed / POPUP_CLOSE_DURATION;
-            float eased = t * t; // ease-in
-
-            if (cg != null) cg.alpha = 1f - eased;
-            if (rt != null) rt.localScale = Vector3.one * Mathf.Lerp(1f, 0.8f, eased);
-
-            yield return null;
-        }
-
-        FinishHidePopup();
-        isAnimating = false;
+        return panelDict.ContainsKey(name) ? panelDict[name] : null;
     }
 
-    IEnumerator FadePanel(GameObject panel, float from, float to, float duration)
+    public string CurrentPanelName => currentPanelName;
+
+    void LoadTrainingScene()
     {
-        CanvasGroup cg = panel.GetComponent<CanvasGroup>();
-        if (cg == null) yield break;
-
-        float elapsed = 0f;
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            cg.alpha = Mathf.Lerp(from, to, elapsed / duration);
-            yield return null;
-        }
-        cg.alpha = to;
+        SceneManager.LoadScene("CPRTraining");
     }
-
-    void SetPanelAlpha(GameObject panel, float alpha)
-    {
-        CanvasGroup cg = panel?.GetComponent<CanvasGroup>();
-        if (cg != null) cg.alpha = alpha;
-    }
-
-    void HideAllPanels()
-    {
-        if (homePanel != null) homePanel.SetActive(false);
-        if (lobbyPanel != null) lobbyPanel.SetActive(false);
-        if (settingsPanel != null) settingsPanel.SetActive(false);
-        if (helpPanel != null) helpPanel.SetActive(false);
-        if (studyVideoPanel != null) studyVideoPanel.SetActive(false);
-        if (sceneSelectPanel != null) sceneSelectPanel.SetActive(false);
-        if (skillSelectPanel != null) skillSelectPanel.SetActive(false);
-        if (scoreReportPanel != null) scoreReportPanel.SetActive(false);
-        if (trainingPlaceholderPanel != null) trainingPlaceholderPanel.SetActive(false);
-    }
-
-    GameObject GetPanelForState(GameState state)
-    {
-        return state switch
-        {
-            GameState.Home => homePanel,
-            GameState.Lobby => lobbyPanel,
-            GameState.Settings => settingsPanel,
-            GameState.Help => helpPanel,
-            GameState.StudyVideo => studyVideoPanel,
-            GameState.SceneSelect => sceneSelectPanel,
-            GameState.SkillSelect => skillSelectPanel,
-            GameState.ScoreReport => scoreReportPanel,
-            GameState.Training => trainingPlaceholderPanel,
-            _ => null
-        };
-    }
-
-    GameObject GetActivePanel()
-    {
-        return GetPanelForState(currentState);
-    }
-
-    public GameState CurrentState => currentState;
 }

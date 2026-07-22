@@ -33,16 +33,18 @@ public class SkillSelectPanel : BasePanel
 
     void OnCPRClicked()
     {
-        UIManager.Instance.SwitchState(GameState.Training);
+        // 先跳转到场景选择，让用户选地图
+        UIManager.Instance.NavigateTo("SceneSelect");
     }
 
     void OnAEDClicked()
     {
-        UIManager.Instance.SwitchState(GameState.Training);
+        // 先跳转到场景选择，让用户选地图
+        UIManager.Instance.NavigateTo("SceneSelect");
     }
 
     void OnBackClicked()
     {
-        OnBack();
+        UIManager.Instance.GoBack();
     }
 }

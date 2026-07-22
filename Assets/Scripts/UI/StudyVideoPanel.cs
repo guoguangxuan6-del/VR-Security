@@ -141,6 +141,6 @@ public class StudyVideoPanel : BasePanel
     {
         if (videoPlayer != null)
             videoPlayer.Stop();
-        OnBack();
+        UIManager.Instance.GoBack();
     }
 }

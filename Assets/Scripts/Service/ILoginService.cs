@@ -15,4 +15,10 @@ public interface ILoginService
     
     /// <summary>当前登录用户名，未登录时为空串</summary>
     string CurrentUser { get; }
+    
+    /// <summary>与 CurrentUser 相同，方便面板脚本调用</summary>
+    string CurrentUsername { get; }
+    
+    /// <summary>退出登录</summary>
+    void Logout();
 }

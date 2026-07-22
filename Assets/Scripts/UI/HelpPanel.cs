@@ -42,6 +42,6 @@ public class HelpPanel : BasePanel
 
     void OnBackClicked()
     {
-        OnBack();
+        UIManager.Instance.GoBack();
     }
 }

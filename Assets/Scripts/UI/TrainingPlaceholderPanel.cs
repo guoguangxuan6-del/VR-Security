@@ -32,6 +32,6 @@ public class TrainingPlaceholderPanel : BasePanel
 
     void OnBackClicked()
     {
-        OnBack();
+        UIManager.Instance.GoBack();
     }
 }

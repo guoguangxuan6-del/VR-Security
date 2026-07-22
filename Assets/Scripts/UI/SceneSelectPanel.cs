@@ -37,11 +37,12 @@ public class SceneSelectPanel : BasePanel
 
     void OnSubwayClicked()
     {
-        UIManager.Instance.SwitchState(GameState.SkillSelect);
+        // 加载地铁站场景（Demonstration）
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Demonstration");
     }
 
     void OnBackClicked()
     {
-        OnBack();
+        UIManager.Instance.GoBack();
     }
 }

@@ -101,6 +101,6 @@ public class ScoreReportPanel : BasePanel
 
     void OnBackToMenuClicked()
     {
-        OnBack();
+        UIManager.Instance.GoBack();
     }
 }

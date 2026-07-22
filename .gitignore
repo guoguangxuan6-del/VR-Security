@@ -17,3 +17,34 @@
 /UI指导.md
 /一阶段优化意见.md
 /一阶段测试流程.md
+
+# WorkBuddy 工作空间数据
+.workbuddy/
+.claude/
+
+# 内部脚本 / 工具
+_agent_client.py
+verify_mount.py
+task/
+images/
+studio/
+
+# 大文件 / 第三方 / 测试
+Assets/charite-university-hospital-operating-room/
+Assets/UI/
+Assets/XR/
+Assets/Screenshots/
+Packages/Tripo3d_Unity_Bridge/
+
+# Unity 重导入噪音（YAML 格式变化）
+Assets/Fonts/Deng SDF.asset
+Assets/Fonts/Deng SDF.asset.meta
+Assets/TextMesh Pro/*/Resources/Fonts & Materials/*.asset
+Assets/Scenes/UI/Login Scene 1.unity
+Assets/Scenes/UI/Login Scene 1.unity.meta
+Assets/Scenes/UI/Login Scene 2.unity
+Assets/Scenes/UI/Login Scene 2.unity.meta
+Assets/Scripts/UI/LoginCanvasAnimator.cs
+Assets/Scripts/UI/LoginCanvasAnimator.cs.meta
+Assets/Scripts/UI/LoginSceneEffects.cs
+Assets/Scripts/UI/LoginSceneEffects.cs.meta

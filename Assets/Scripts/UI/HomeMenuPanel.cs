@@ -1,8 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HomeMenuPanel : BasePanel
 {
+    [Header("User Info Bar")]
+    [SerializeField] private GameObject userInfoBar;
+    [SerializeField] private Image userAvatar;
+    [SerializeField] private TextMeshProUGUI nicknameText;
+    [SerializeField] private Button logoutButton;
+
     [Header("Buttons")]
     [SerializeField] private Button btnStudyVideo;
     [SerializeField] private Button btnSkillTraining;
@@ -17,94 +24,49 @@ public class HomeMenuPanel : BasePanel
         AutoBind();
         loginService = ServiceLocator.Instance.LoginService;
 
-        btnStudyVideo.onClick.AddListener(OnStudyVideoClicked);
-        btnSkillTraining.onClick.AddListener(OnSkillTrainingClicked);
-        btnSettings.onClick.AddListener(OnSettingsClicked);
-        btnHelp.onClick.AddListener(OnHelpClicked);
-        exitButton.onClick.AddListener(OnExitClicked);
-    }
+        // 使用新导航 API 绑定按钮
+        if (btnStudyVideo != null) btnStudyVideo.onClick.AddListener(() => UIManager.Instance.NavigateTo("StudyVideo"));
+        if (btnSkillTraining != null) btnSkillTraining.onClick.AddListener(() => UIManager.Instance.NavigateTo("SkillSelect"));
+        if (btnSettings != null) btnSettings.onClick.AddListener(() => UIManager.Instance.NavigateTo("Settings"));
+        if (btnHelp != null) btnHelp.onClick.AddListener(() => UIManager.Instance.NavigateTo("Help"));
+        if (exitButton != null) exitButton.onClick.AddListener(() => UIManager.Instance.OnCancelButtonClicked());
+        if (logoutButton != null) logoutButton.onClick.AddListener(OnLogoutClicked);
 
-    public override void OnEnter(object data)
-    {
-        RefreshOfflineState();
-    }
-
-    void OnEnable()
-    {
-        RefreshOfflineState();
+        RefreshUserInfo();
     }
 
     void AutoBind()
     {
-        if (btnStudyVideo == null)
-            btnStudyVideo = transform.Find("BtnStudyVideo")?.GetComponent<Button>();
-        if (btnSkillTraining == null)
-            btnSkillTraining = transform.Find("BtnSkillTraining")?.GetComponent<Button>();
-        if (btnSettings == null)
-            btnSettings = transform.Find("BtnSettings")?.GetComponent<Button>();
-        if (btnHelp == null)
-            btnHelp = transform.Find("BtnHelp")?.GetComponent<Button>();
-        if (exitButton == null)
-            exitButton = transform.Find("ExitButton")?.GetComponent<Button>();
+        if (userInfoBar == null) userInfoBar = transform.Find("UserInfoBar")?.gameObject;
+        if (userAvatar == null) userAvatar = transform.Find("UserInfoBar/Avatar")?.GetComponent<Image>();
+        if (nicknameText == null) nicknameText = transform.Find("UserInfoBar/Nickname")?.GetComponent<TextMeshProUGUI>();
+        if (logoutButton == null) logoutButton = transform.Find("UserInfoBar/LogoutButton")?.GetComponent<Button>();
 
-        Debug.Assert(btnStudyVideo != null, "[HomeMenu] BtnStudyVideo not found");
-        Debug.Assert(btnSkillTraining != null, "[HomeMenu] BtnSkillTraining not found");
-        Debug.Assert(btnSettings != null, "[HomeMenu] BtnSettings not found");
-        Debug.Assert(btnHelp != null, "[HomeMenu] BtnHelp not found");
+        if (btnStudyVideo == null) btnStudyVideo = transform.Find("BtnStudyVideo")?.GetComponent<Button>();
+        if (btnSkillTraining == null) btnSkillTraining = transform.Find("BtnSkillTraining")?.GetComponent<Button>();
+        if (btnSettings == null) btnSettings = transform.Find("BtnSettings")?.GetComponent<Button>();
+        if (btnHelp == null) btnHelp = transform.Find("BtnHelp")?.GetComponent<Button>();
+        if (exitButton == null) exitButton = transform.Find("ExitButton")?.GetComponent<Button>();
     }
 
-    void RefreshOfflineState()
+    void OnLogoutClicked()
     {
-        if (loginService == null) return;
-
-        bool isLoggedIn = loginService.IsLoggedIn;
-        btnSkillTraining.interactable = isLoggedIn;
+        UIManager.Instance.OnLogout();
     }
 
-    void Update()
+    public void RefreshUserInfo()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            OnStudyVideoClicked();
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-            OnSkillTrainingClicked();
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-            OnSettingsClicked();
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-            OnHelpClicked();
-    }
-
-    void OnStudyVideoClicked()
-    {
-        UIManager.Instance.SwitchState(GameState.StudyVideo);
-    }
-
-    void OnSkillTrainingClicked()
-    {
-        if (loginService != null && !loginService.IsLoggedIn)
+        if (loginService == null || !loginService.IsLoggedIn)
         {
-            Debug.Log("[HomeMenu] Training requires login");
+            if (userInfoBar != null) userInfoBar.SetActive(false);
             return;
         }
-        UIManager.Instance.SwitchState(GameState.SceneSelect);
-    }
 
-    void OnSettingsClicked()
-    {
-        UIManager.Instance.SwitchState(GameState.Settings);
-    }
-
-    void OnHelpClicked()
-    {
-        UIManager.Instance.SwitchState(GameState.Help);
-    }
-
-    void OnExitClicked()
-    {
-        OnBack();
-    }
-
-    void OnBackClicked()
-    {
-        OnBack();
+        if (userInfoBar != null) userInfoBar.SetActive(true);
+        if (nicknameText != null)
+        {
+            string username = loginService.CurrentUsername;
+            nicknameText.text = string.IsNullOrEmpty(username) ? "用户" : username;
+        }
     }
 }

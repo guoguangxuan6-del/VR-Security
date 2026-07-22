@@ -182,7 +182,7 @@ public class SettingsPanel : BasePanel
     {
         if (hasApplyCancel && hasChanges)
             RestoreOriginals();
-        OnBack();
+        UIManager.Instance.GoBack();
     }
 
     void RestoreOriginals()
