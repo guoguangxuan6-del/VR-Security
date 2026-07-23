@@ -1,18 +1,18 @@
 using System.IO;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class LocalVideoProvider : IVideoProvider
 {
-    public string GetVideoPath(string videoId)
+    public Task<VideoInfo> GetVideoAsync(string videoId)
     {
-        // 假设视频文件以 .mp4 结尾
-        return Path.Combine(Application.streamingAssetsPath, "Videos", videoId + ".mp4");
-    }
-
-    public bool HasVideo(string videoId)
-    {
-        string path = GetVideoPath(videoId);
-        // StreamingAssets 在大多数平台可用 File.Exists 检查
-        return File.Exists(path);
+        string localPath = Path.Combine(Application.streamingAssetsPath, "Videos", videoId + ".mp4");
+        var info = new VideoInfo
+        {
+            videoId = videoId,
+            url = localPath,
+            durationSeconds = 0
+        };
+        return Task.FromResult(info);
     }
 }

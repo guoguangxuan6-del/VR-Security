@@ -46,7 +46,7 @@
 - 视频文件放 `StreamingAssets`（只读），账号成绩放 `PersistentDataPath`（可读写）
 - 后端就绪后替换 `ServiceLocator.Awake()` 中 3 行实例化代码即可
 
-### 当前 UI 架构（2026-06-07 更新）
+### 当前 UI 架构（2026-07-23 更新）
 
 **GameState 枚举：**
 ```csharp
@@ -86,14 +86,18 @@ Paused, ScoreReport, Settings, Help, Login(弹窗), Register(弹窗)
 
 **Settings Apply/Cancel：** 有Apply/Cancel按钮时预览不持久化，确认后写PlayerPrefs，取消恢复原值。无按钮时兼容旧版直接写入。
 
-**服务接口层：**
-| 接口 | 本地实现 | 存储位置 |
-|------|---------|---------|
-| ILoginService | LocalLoginService | PersistentDataPath/accounts.json |
-| IVideoProvider | LocalVideoProvider | StreamingAssets/Videos/ |
-| IScoreRepository | LocalScoreRepository | PersistentDataPath/Scores/scores.json |
+**服务接口层（2026-07-23 更新）：**
+| 接口 | 本地实现 | API 实现 | 存储位置 |
+|------|---------|---------|---------|
+| `ILoginService` | `LocalLoginService` | `ApiLoginService` | PersistentDataPath/accounts.json → HTTP |
+| `IVideoProvider` | `LocalVideoProvider` | `ApiVideoProvider` | StreamingAssets/Videos/ → HTTP |
+| `IScoreRepository` | `LocalScoreRepository` | `ApiScoreRepository` | PersistentDataPath/Scores/scores.json → HTTP |
+| `IAvatarService` | — | `ApiAvatarService` | HTTP |
 
-**当前进度：** 阶段零+阶段一+一阶段优化全部完成，已知问题已解决。下一步：阶段二 InputManager + 游戏UI。
+**后端 API**：`http://123.57.30.132:8080`，JWT token 认证，信封格式 `{code, message, data}`。
+**切换方式**：`ServiceLocator.Awake()` 中 `new ApiXxx()` ↔ `new LocalXxx()` 即可回退。
+
+**当前进度：** 阶段零+阶段一+一阶段优化+后端 API 服务层全部完成，待 Play Mode 完整测试。下一步：阶段二 InputManager + 游戏UI。
 
 ### 分支管理
 

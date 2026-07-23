@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class LocalScoreRepository : IScoreRepository
@@ -17,20 +18,21 @@ public class LocalScoreRepository : IScoreRepository
         LoadScores();
     }
 
-    public void SaveScore(ScoreData data)
+    public Task SaveScoreAsync(ScoreData data)
     {
         allScores.Add(data);
         SaveScores();
+        return Task.CompletedTask;
     }
 
-    public List<ScoreData> GetUserScores(string username)
+    public Task<List<ScoreData>> GetUserScoresAsync(string username)
     {
-        return allScores.Where(s => s.username == username).ToList();
+        return Task.FromResult(allScores.Where(s => s.username == username).ToList());
     }
 
-    public ScoreData GetLatestScore()
+    public Task<ScoreData> GetLatestScoreAsync()
     {
-        return allScores.LastOrDefault();
+        return Task.FromResult(allScores.LastOrDefault());
     }
 
     private void LoadScores()

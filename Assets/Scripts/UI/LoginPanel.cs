@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -12,6 +13,7 @@ public class LoginPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI messageText;
 
     private ILoginService loginService;
+    private bool isProcessing;
 
     void Start()
     {
@@ -35,8 +37,10 @@ public class LoginPanel : MonoBehaviour
         if (messageText == null) messageText = transform.Find("MessageText")?.GetComponent<TextMeshProUGUI>();
     }
 
-    void OnLoginClicked()
+    async void OnLoginClicked()
     {
+        if (isProcessing) return;
+
         string username = usernameInput.text.Trim();
         string password = passwordInput.text;
 
@@ -47,11 +51,16 @@ public class LoginPanel : MonoBehaviour
             return;
         }
 
-        if (loginService.Login(username, password))
+        isProcessing = true;
+        messageText.text = "登录中...";
+        messageText.color = Color.yellow;
+
+        bool success = await loginService.LoginAsync(username, password);
+
+        if (success)
         {
             messageText.text = "登录成功";
             messageText.color = Color.green;
-            // 使用新导航 API：登录成功 → 清栈 → Lobby
             UIManager.Instance.OnLoginSuccess();
         }
         else
@@ -59,6 +68,7 @@ public class LoginPanel : MonoBehaviour
             messageText.text = "用户名或密码错误";
             messageText.color = Color.red;
         }
+        isProcessing = false;
     }
 
     void OnRegisterEntryClicked()

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -13,6 +14,7 @@ public class RegisterPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI messageText;
 
     private ILoginService loginService;
+    private bool isProcessing;
 
     void Start()
     {
@@ -37,8 +39,10 @@ public class RegisterPanel : MonoBehaviour
         if (messageText == null) messageText = transform.Find("MessageText")?.GetComponent<TextMeshProUGUI>();
     }
 
-    void OnRegisterClicked()
+    async void OnRegisterClicked()
     {
+        if (isProcessing) return;
+
         string username = usernameInput.text.Trim();
         string password = passwordInput.text;
         string confirmPassword = confirmPasswordInput.text;
@@ -64,12 +68,16 @@ public class RegisterPanel : MonoBehaviour
             return;
         }
 
-        if (loginService.Register(username, password))
+        isProcessing = true;
+        messageText.text = "注册中...";
+        messageText.color = Color.yellow;
+
+        bool success = await loginService.RegisterAsync(username, password);
+
+        if (success)
         {
             messageText.text = "注册成功，已自动登录";
             messageText.color = Color.green;
-            // 注册成功后自动登录并跳转 Lobby
-            loginService.Login(username, password);
             UIManager.Instance.OnLoginSuccess();
         }
         else
@@ -77,6 +85,7 @@ public class RegisterPanel : MonoBehaviour
             messageText.text = "用户名已存在";
             messageText.color = Color.red;
         }
+        isProcessing = false;
     }
 
     void OnBackToLoginClicked()

@@ -37,7 +37,7 @@ public class SceneSelectPanel : BasePanel
 
     void OnSubwayClicked()
     {
-        // 加载地铁站场景（Demonstration）
+        // 加载 CPR 训练场景
         UnityEngine.SceneManagement.SceneManager.LoadScene("Demonstration");
     }
 

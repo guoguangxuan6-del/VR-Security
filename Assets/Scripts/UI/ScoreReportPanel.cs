@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -23,7 +24,7 @@ public class ScoreReportPanel : BasePanel
         if (retryButton != null) retryButton.onClick.AddListener(OnRetryClicked);
         if (backToMenuButton != null) backToMenuButton.onClick.AddListener(OnBackToMenuClicked);
 
-        LoadLatestScore();
+        LoadLatestScoreAsync();
     }
 
     void AutoBind()
@@ -46,9 +47,9 @@ public class ScoreReportPanel : BasePanel
         Debug.Assert(backToMenuButton != null, "[ScoreReport] BackToMenuButton not found");
     }
 
-    void LoadLatestScore()
+    async void LoadLatestScoreAsync()
     {
-        ScoreData latest = scoreRepository.GetLatestScore();
+        ScoreData latest = await scoreRepository.GetLatestScoreAsync();
         if (latest != null)
         {
             totalScoreText.text = $"Total: {latest.totalScore:F1}";

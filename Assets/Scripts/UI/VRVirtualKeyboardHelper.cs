@@ -22,6 +22,13 @@ public class VRVirtualKeyboardHelper : MonoBehaviour
 
     void Start()
     {
+        // VR 虚拟键盘仅在 VR 模式下启用（桌面端键鼠不需要此组件）
+        // feature/no-vr 分支不会加载 XR 包，此处二次保险避免误挂载后干扰桌面端输入
+        #if !ENABLE_VR
+        this.enabled = false;
+        return;
+        #endif
+
         // 1. 查找并绑定场景内所有传统的 InputField
         InputField[] legacyInputs = GetComponentsInChildren<InputField>(true);
         foreach (var input in legacyInputs)

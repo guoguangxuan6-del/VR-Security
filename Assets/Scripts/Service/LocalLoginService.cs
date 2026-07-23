@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class LocalLoginService : ILoginService
@@ -8,6 +9,7 @@ public class LocalLoginService : ILoginService
     private List<UserAccount> accounts;
     private string currentUser = "";
 
+    public string Token => "";
     public bool IsLoggedIn => !string.IsNullOrEmpty(currentUser);
     public string CurrentUser => currentUser;
     public string CurrentUsername => currentUser;
@@ -23,25 +25,35 @@ public class LocalLoginService : ILoginService
         LoadAccounts();
     }
 
-    public bool Register(string username, string password)
+    public Task<bool> RegisterAsync(string username, string password)
     {
         if (accounts.Exists(a => a.username == username))
-            return false;
+            return Task.FromResult(false);
 
         accounts.Add(new UserAccount { username = username, password = password });
         SaveAccounts();
-        return true;
+        return Task.FromResult(true);
     }
 
-    public bool Login(string username, string password)
+    public Task<bool> LoginAsync(string username, string password)
     {
         var account = accounts.Find(a => a.username == username && a.password == password);
         if (account != null)
         {
             currentUser = username;
-            return true;
+            return Task.FromResult(true);
         }
-        return false;
+        return Task.FromResult(false);
+    }
+
+    public Task<UserInfo> GetUserInfoAsync()
+    {
+        return Task.FromResult(new UserInfo
+        {
+            username = currentUser,
+            createdAt = "",
+            avatarUrl = PlayerPrefs.GetString("avatar_url", "")
+        });
     }
 
     private void LoadAccounts()

@@ -7,6 +7,7 @@ public class ServiceLocator : MonoBehaviour
     public ILoginService LoginService { get; private set; }
     public IVideoProvider VideoProvider { get; private set; }
     public IScoreRepository ScoreRepository { get; private set; }
+    public IAvatarService AvatarService { get; private set; }
 
     void Awake()
     {
@@ -18,9 +19,10 @@ public class ServiceLocator : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // 当前使用本地实现，后端就绪后替换为Api实现
-        LoginService = new LocalLoginService();
-        VideoProvider = new LocalVideoProvider();
-        ScoreRepository = new LocalScoreRepository();
+        // 后端 API 实现（接口已切换为 async/await）
+        LoginService = new ApiLoginService();
+        VideoProvider = new ApiVideoProvider();
+        ScoreRepository = new ApiScoreRepository();
+        AvatarService = new ApiAvatarService();
     }
 }

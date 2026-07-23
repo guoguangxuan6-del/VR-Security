@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -18,13 +19,16 @@ public class HomeMenuPanel : BasePanel
     [SerializeField] private Button exitButton;
 
     private ILoginService loginService;
+    private IAvatarService avatarService;
+    private string currentAvatarUrl;
+    private const string AvatarUrlKey = "avatar_url";
 
     void Start()
     {
         AutoBind();
         loginService = ServiceLocator.Instance.LoginService;
+        avatarService = ServiceLocator.Instance.AvatarService;
 
-        // 使用新导航 API 绑定按钮
         if (btnStudyVideo != null) btnStudyVideo.onClick.AddListener(() => UIManager.Instance.NavigateTo("StudyVideo"));
         if (btnSkillTraining != null) btnSkillTraining.onClick.AddListener(() => UIManager.Instance.NavigateTo("SkillSelect"));
         if (btnSettings != null) btnSettings.onClick.AddListener(() => UIManager.Instance.NavigateTo("Settings"));
@@ -54,6 +58,23 @@ public class HomeMenuPanel : BasePanel
         UIManager.Instance.OnLogout();
     }
 
+    /// <summary>
+    /// 加载并显示头像
+    /// </summary>
+    async Task LoadAndSetAvatarImage(string url)
+    {
+        Texture2D tex = await avatarService.LoadAvatarTextureAsync(url);
+        if (tex != null && userAvatar != null)
+        {
+            Sprite sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.one * 0.5f);
+            userAvatar.sprite = sprite;
+            userAvatar.preserveAspect = true;
+        }
+    }
+
+    /// <summary>
+    /// 刷新用户信息（登录后调用）
+    /// </summary>
     public void RefreshUserInfo()
     {
         if (loginService == null || !loginService.IsLoggedIn)
@@ -67,6 +88,30 @@ public class HomeMenuPanel : BasePanel
         {
             string username = loginService.CurrentUsername;
             nicknameText.text = string.IsNullOrEmpty(username) ? "用户" : username;
+        }
+
+        // 获取用户信息并加载头像
+        _ = FetchAndDisplayAvatar();
+    }
+
+    async Task FetchAndDisplayAvatar()
+    {
+        // 先尝试从后端获取最新用户信息
+        var userInfo = await loginService.GetUserInfoAsync();
+        if (userInfo != null && !string.IsNullOrEmpty(userInfo.avatarUrl))
+        {
+            currentAvatarUrl = userInfo.avatarUrl;
+            PlayerPrefs.SetString(AvatarUrlKey, currentAvatarUrl);
+            PlayerPrefs.Save();
+            await LoadAndSetAvatarImage(currentAvatarUrl);
+            return;
+        }
+
+        // Fallback 到缓存
+        currentAvatarUrl = PlayerPrefs.GetString(AvatarUrlKey, "");
+        if (!string.IsNullOrEmpty(currentAvatarUrl))
+        {
+            await LoadAndSetAvatarImage(currentAvatarUrl);
         }
     }
 }

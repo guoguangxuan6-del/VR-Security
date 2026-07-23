@@ -1,3 +1,5 @@
+using System.IO;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -15,6 +17,7 @@ public class StudyVideoPanel : BasePanel
 
     private bool isUpdatingSlider;
     private RenderTexture renderTexture;
+    private bool isPreparing;
 
     void Start()
     {
@@ -59,31 +62,9 @@ public class StudyVideoPanel : BasePanel
         }
     }
 
-    // void SetupVideoPlayer()
-    // {
-    //     renderTexture = new RenderTexture(1920, 1080, 0);
-    //     renderTexture.Create();
-
-    //     videoPlayer.renderMode = VideoRenderMode.RenderTexture;
-    //     videoPlayer.targetTexture = renderTexture;
-    //     videoPlayer.isLooping = false;
-    //     videoPlayer.playOnAwake = false;
-
-    //     if (videoRenderImage != null)
-    //         videoRenderImage.texture = renderTexture;
-
-    //     string videoPath = ServiceLocator.Instance.VideoProvider.GetVideoPath("cpr_demo");
-    //     if (!string.IsNullOrEmpty(videoPath))
-    //     {
-    //         videoPlayer.url = videoPath;
-    //         videoPlayer.Prepare();
-    //     }
-    //     else
-    //     {
-    //         Debug.LogWarning("[StudyVideo] No test video found");
-    //     }
-    // }
-
+    /// <summary>
+    /// 配置 VideoPlayer：创建 RenderTexture、注册事件、异步从后端获取视频 URL
+    /// </summary>
     void SetupVideoPlayer()
     {
         renderTexture = new RenderTexture(1920, 1080, 0);
@@ -97,25 +78,59 @@ public class StudyVideoPanel : BasePanel
         if (videoRenderImage != null)
             videoRenderImage.texture = renderTexture;
 
-        string videoPath = Application.streamingAssetsPath + "/Videos/cprdemo.mp4";
+        // 异步加载视频 URL
+        LoadVideoAsync("video1");
+    }
 
-        if (!string.IsNullOrEmpty(videoPath))
+    async void LoadVideoAsync(string videoId)
+    {
+        isPreparing = true;
+        Debug.Log($"[StudyVideo] Loading video: {videoId}");
+
+        string videoUrl = null;
+
+        try
         {
-            videoPlayer.url = videoPath;
-            videoPlayer.errorReceived += OnVideoError;
-            videoPlayer.Prepare();
-            Debug.Log("[StudyVideo] Loading: " + videoPath);
+            VideoInfo info = await ServiceLocator.Instance.VideoProvider.GetVideoAsync(videoId);
+            if (info != null && !string.IsNullOrEmpty(info.url))
+            {
+                videoUrl = info.url;
+                Debug.Log($"[StudyVideo] Got URL from API: {info.url} ({info.durationSeconds}s)");
+            }
         }
-        else
+        catch (System.Exception ex)
         {
-            Debug.LogWarning("[StudyVideo] No video found in StreamingAssets/Videos/");
+            Debug.LogWarning($"[StudyVideo] Failed to get video from API: {ex.Message}");
         }
+
+        // 如果后端 URL 不可用（假 URL 或无效），fallback 到本地文件
+        if (string.IsNullOrEmpty(videoUrl) || videoUrl.Contains("example.com"))
+        {
+            string localPath = Application.streamingAssetsPath + "/Videos/cprdemo.mp4";
+            if (System.IO.File.Exists(localPath))
+            {
+                videoUrl = localPath;
+                Debug.Log($"[StudyVideo] Fallback to local: {localPath}");
+            }
+            else
+            {
+                Debug.LogWarning("[StudyVideo] No local video fallback available. Place cprdemo.mp4 in StreamingAssets/Videos/");
+                isPreparing = false;
+                return;
+            }
+        }
+
+        videoPlayer.url = videoUrl;
+        videoPlayer.errorReceived += OnVideoError;
+        videoPlayer.Prepare();
+        isPreparing = false;
     }
 
     void OnVideoError(VideoPlayer source, string message)
     {
-        Debug.LogWarning("[StudyVideo] Format unsupported. Transcode to H.264 baseline MP4. Error: " + message);
+        Debug.LogWarning("[StudyVideo] Video error: " + message);
     }
+
     void OnPlayPauseClicked()
     {
         if (videoPlayer == null) return;
@@ -126,11 +141,6 @@ public class StudyVideoPanel : BasePanel
             videoPlayer.Play();
     }
 
-    // void OnProgressChanged(float value)
-    // {
-    //     if (videoPlayer == null || videoPlayer.clip == null || !isDraggingSlider) return;
-    //     videoPlayer.time = value * videoPlayer.length;
-    // }
     void OnProgressChanged(float value)
     {
         if (videoPlayer == null || !videoPlayer.isPrepared || isUpdatingSlider) return;
