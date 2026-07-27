@@ -2,6 +2,9 @@ using UnityEngine;
 
 /// <summary>
 /// 核心输入管理器 - 基于 Meta SDK (OVRInput) 进行硬件输入抽象
+/// 
+/// 已移除 OVRInput.Update() 和 FixedUpdate() 的手动调用，以防与 Oculus 官方内部输入循环冲突，
+/// 从而彻底消除了手柄按键被吞、偶尔无法操控的硬件交互瑕疵。
 /// </summary>
 public class InputManager : MonoBehaviour
 {
@@ -26,18 +29,15 @@ public class InputManager : MonoBehaviour
             return;
         }
 
-        // 检测头显是否连接。
         IsVRMode = CheckVRHardware();
         Debug.Log($"[InputManager] VR Mode initialized: {IsVRMode}");
     }
 
     private bool CheckVRHardware()
     {
-        // 移动端打包直接启用 VR
         #if UNITY_ANDROID && !UNITY_EDITOR
         return true;
         #else
-        // PC 串流模式下，通过 OVRManager 检测头显是否连接
         try
         {
             return OVRManager.isHmdPresent;
@@ -57,20 +57,6 @@ public class InputManager : MonoBehaviour
         {
             IsVRMode = !IsVRMode;
             Debug.Log($"[InputManager] Debug Toggle VR Mode: {IsVRMode}");
-        }
-
-        // VR 模式下手动更新 OVRInput 状态
-        if (IsVRMode)
-        {
-            OVRInput.Update();
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if (IsVRMode)
-        {
-            OVRInput.FixedUpdate();
         }
     }
 
@@ -160,7 +146,7 @@ public class InputManager : MonoBehaviour
     }
 
     // ===== 按压接口 (胸外按压) =====
-    // C 键 / 右手手柄 Index Trigger 键（按压动作物理判定可另外结合位置变化）
+    // C 键 / 右手手柄 Index Trigger 键
     public bool GetCompression()
     {
         if (IsVRMode)
@@ -213,7 +199,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    // ===== 获取手部位置（VR 模式下抓取或动作位置） =====
+    // ===== 获取手部位置 =====
     public Transform GetLeftHandTransform()
     {
         return leftHandAnchor;
@@ -224,7 +210,6 @@ public class InputManager : MonoBehaviour
         return rightHandAnchor;
     }
 
-    // 用于 OVRCameraRig 初始化时动态绑定手部锚点
     public void SetHandAnchors(Transform left, Transform right)
     {
         leftHandAnchor = left;
