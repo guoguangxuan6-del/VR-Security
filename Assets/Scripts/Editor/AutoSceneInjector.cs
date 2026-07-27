@@ -4,9 +4,8 @@ using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// 全套 VRPlayer 根节点与绑定的双手硬重建/注入器
-/// 自动重建 VRPlayer 根物体，重构 OVRCameraRig 与双手模型 (LeftHandAnchor / RightHandAnchor)，
-/// 恢复最原始丝滑连续平滑旋转视角逻辑，并挂载 HDRP 材质修复与双手输入，直接 SaveScene 保存写入 Demonstration.unity YAML!
+/// 全套 VRPlayer 根节点与高显度双手硬重建/注入器
+/// 彻底保障 LeftHandAnchor 与 RightHandAnchor 在任何模式下 100% 显形可见。
 /// </summary>
 [InitializeOnLoad]
 public class AutoSceneInjector
@@ -16,7 +15,7 @@ public class AutoSceneInjector
         EditorApplication.delayCall += PerformSceneInjection;
     }
 
-    [MenuItem("Tools/Force Build VRPlayer & Hands in Scene")]
+    [MenuItem("Tools/Force Build VRPlayer & Visible Hands")]
     public static void PerformSceneInjection()
     {
         Scene activeScene = EditorSceneManager.GetActiveScene();
@@ -33,7 +32,7 @@ public class AutoSceneInjector
 
         bool isModified = false;
 
-        // 1. 全局 InputManager 查找或创建
+        // 1. 全局 InputManager
         var inputMgr = Object.FindObjectOfType<InputManager>();
         if (inputMgr == null)
         {
@@ -43,7 +42,7 @@ public class AutoSceneInjector
             isModified = true;
         }
 
-        // 2. 查找或重建 OVRCameraRig
+        // 2. OVRCameraRig 与 TrackingSpace
         var cameraRig = Object.FindObjectOfType<OVRCameraRig>();
         if (cameraRig == null)
         {
@@ -67,11 +66,11 @@ public class AutoSceneInjector
             isModified = true;
         }
 
-        // 建立/保底手部 Visual 模型 (确保双手 100% 显形)
-        EnsureHandVisual(cameraRig.leftHandAnchor, "CustomHandLeft");
-        EnsureHandVisual(cameraRig.rightHandAnchor, "CustomHandRight");
+        // 3. 构建高显度、绝不隐形的双手 Visual 节点
+        BuildVisibleHandModel(cameraRig.leftHandAnchor, "CustomHandLeft", new Vector3(-0.02f, 0f, 0.08f));
+        BuildVisibleHandModel(cameraRig.rightHandAnchor, "CustomHandRight", new Vector3(0.02f, 0f, 0.08f));
 
-        // 3. 彻底重构并恢复【VRPlayer 根节点与绑定的双手】
+        // 4. VRPlayer 根节点
         GameObject playerRoot = GameObject.Find("VRPlayer");
         if (playerRoot == null)
         {
@@ -113,7 +112,7 @@ public class AutoSceneInjector
         serializedRig.FindProperty("cameraRig").objectReferenceValue = cameraRig;
         serializedRig.ApplyModifiedProperties();
 
-        // 挂载 HDRP 材质修复器 (确保双手显形，材料不发黑不发紫)
+        // 挂载 HDRP 材质修复器
         var fixer = cameraRig.GetComponent<HDRPMaterialFixer>();
         if (fixer == null)
         {
@@ -127,7 +126,7 @@ public class AutoSceneInjector
             inputMgr.SetHandAnchors(cameraRig.leftHandAnchor, cameraRig.rightHandAnchor);
         }
 
-        // 4. 患者人体受害者节点与 3D 情景对话框
+        // 5. 患者人体节点与 3D 情景对话框
         GameObject patientObj = GameObject.Find("Patient");
         if (patientObj == null)
         {
@@ -146,7 +145,7 @@ public class AutoSceneInjector
             isModified = true;
         }
 
-        // 5. CPR 按压黄金区间训练管理器
+        // 6. CPR 按压黄金区间训练管理器
         var cprMgr = Object.FindObjectOfType<CPRTrainingManager>();
         if (cprMgr == null)
         {
@@ -160,24 +159,45 @@ public class AutoSceneInjector
         {
             EditorSceneManager.MarkSceneDirty(activeScene);
             EditorSceneManager.SaveScene(activeScene);
-            Debug.Log("[AutoSceneInjector] Rebuilt VRPlayer, Hands & restored smooth VR rotation!");
+            Debug.Log("[AutoSceneInjector] Rebuilt 100% visible hands in Demonstration.unity!");
         }
     }
 
-    static void EnsureHandVisual(Transform handAnchor, string handName)
+    /// <summary>
+    /// 强行构建高显度、带碰撞、在任何镜头下 100% 显形的手部模型占位体
+    /// </summary>
+    static void BuildVisibleHandModel(Transform handAnchor, string handName, Vector3 localOffset)
     {
         if (handAnchor == null) return;
 
         Transform handChild = handAnchor.Find(handName);
-        if (handChild == null && handAnchor.childCount == 0)
+        if (handChild == null)
         {
-            GameObject handObj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            GameObject handObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
             handObj.name = handName;
             handObj.transform.SetParent(handAnchor, false);
-            handObj.transform.localScale = new Vector3(0.08f, 0.08f, 0.15f); // 优雅手部造型占位体
+            handObj.transform.localPosition = localOffset;
+            handObj.transform.localScale = new Vector3(0.08f, 0.05f, 0.16f); // 酷炫手部控制器造形
             
             var col = handObj.GetComponent<Collider>();
             if (col != null) col.isTrigger = true;
+
+            var r = handObj.GetComponent<Renderer>();
+            if (r != null)
+            {
+                r.enabled = true;
+                r.gameObject.layer = 0; // Default Layer
+            }
+        }
+        else
+        {
+            handChild.gameObject.SetActive(true);
+            var r = handChild.GetComponent<Renderer>();
+            if (r != null)
+            {
+                r.enabled = true;
+                r.gameObject.layer = 0;
+            }
         }
     }
 }

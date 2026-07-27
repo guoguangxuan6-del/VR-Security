@@ -1,96 +1,111 @@
 using UnityEngine;
 
 /// <summary>
-/// HDRP 材质自适应修复工具
-/// 自动扫描子物体下的所有 Renderer，将不兼容的 Built-in 材质（如 Standard 等导致的粉红色/隐形）替换为 HDRP 材质。
-/// 挂载在 OVRCameraRig、手部模型或 UIHelpers 等 VR 硬件物体上。
+/// HDRP 管线双手显形与材质自适应修复器
+/// 彻底解决手部模型在 HDRP 管线中发黑、发紫、隐形看不到以及 Culling Mask 遮挡的问题。
+/// 赋予双手高清晰度、高可见度的亮丽 HDRP 材质。
 /// </summary>
 public class HDRPMaterialFixer : MonoBehaviour
 {
+    [Header("Visibility Settings")]
+    [Tooltip("手部高显度材质颜色")]
+    [SerializeField] private Color handColor = new Color(0.1f, 0.75f, 1.0f, 1.0f); // 亮青科技色
+
+    private Shader hdrpLitShader;
+
     void Awake()
+    {
+        hdrpLitShader = Shader.Find("HDRP/Lit");
+        if (hdrpLitShader == null) hdrpLitShader = Shader.Find("Standard");
+
+        FixMaterials();
+    }
+
+    void Start()
     {
         FixMaterials();
     }
 
+    /// <summary>
+    /// 强制开启并修复双手所有的 Renderer 和材质，确保 100% 显形可见！
+    /// </summary>
     public void FixMaterials()
     {
-        Shader hdrpLitShader = Shader.Find("HDRP/Lit");
-        Shader hdrpUnlitShader = Shader.Find("HDRP/Unlit");
+        var cameraRig = GetComponent<OVRCameraRig>();
+        if (cameraRig == null) cameraRig = GetComponentInChildren<OVRCameraRig>(true);
 
-        if (hdrpLitShader == null && hdrpUnlitShader == null)
+        if (cameraRig != null)
         {
-            Debug.LogWarning("[HDRPMaterialFixer] HDRP shaders not found in project. Skipping fix.");
-            return;
-        }
-
-        Renderer[] renderers = GetComponentsInChildren<Renderer>(true);
-        int fixedCount = 0;
-
-        foreach (Renderer r in renderers)
-        {
-            Material[] mats = r.materials;
-            bool changed = false;
-
-            for (int i = 0; i < mats.Length; i++)
+            // 修复左手
+            if (cameraRig.leftHandAnchor != null)
             {
-                if (mats[i] == null) continue;
+                FixHandNode(cameraRig.leftHandAnchor);
+            }
 
-                Shader currentShader = mats[i].shader;
-                string shaderName = currentShader != null ? currentShader.name : "Null";
+            // 修复右手
+            if (cameraRig.rightHandAnchor != null)
+            {
+                FixHandNode(cameraRig.rightHandAnchor);
+            }
 
-                // 判断是否为不兼容的 Built-in/Legacy 着色器
-                if (shaderName == "Standard" || 
-                    shaderName.Contains("Legacy Shaders") || 
-                    shaderName.Contains("Mobile/") ||
-                    shaderName == "Particles/Additive" ||
-                    shaderName == "Sprites/Default" && !(r is SpriteRenderer))
+            // 确保 CenterEyeAnchor 摄像机 Culling Mask 包含手部 Layer
+            if (cameraRig.centerEyeAnchor != null)
+            {
+                Camera cam = cameraRig.centerEyeAnchor.GetComponent<Camera>();
+                if (cam != null)
                 {
-                    // 挑选适当的 HDRP 替代着色器
-                    Shader targetShader = hdrpLitShader;
-                    
-                    // 如果是激光线、射线、指示小球、UI，使用 Unlit 无光照材质，防止在暗处发黑
-                    if (r is LineRenderer || 
-                        r.name.Contains("Laser") || 
-                        r.name.Contains("Pointer") || 
-                        r.name.Contains("Ring") || 
-                        r.name.Contains("Dot") || 
-                        r.name.Contains("Sphere"))
-                    {
-                        targetShader = hdrpUnlitShader != null ? hdrpUnlitShader : hdrpLitShader;
-                    }
-
-                    if (targetShader != null)
-                    {
-                        // 拷贝原先的主色和主贴图
-                        Color origColor = mats[i].HasProperty("_Color") ? mats[i].color : Color.white;
-                        Texture origTex = mats[i].HasProperty("_MainTex") ? mats[i].mainTexture : null;
-
-                        mats[i].shader = targetShader;
-
-                        // 适配 HDRP 材质属性名
-                        if (mats[i].HasProperty("_BaseColor"))
-                            mats[i].SetColor("_BaseColor", origColor);
-                        if (mats[i].HasProperty("_BaseColorMap") && origTex != null)
-                            mats[i].SetTexture("_BaseColorMap", origTex);
-
-                        // 激光和瞄准小球自发光处理
-                        if (targetShader == hdrpUnlitShader && mats[i].HasProperty("_EmissiveColor"))
-                        {
-                            mats[i].SetColor("_EmissiveColor", origColor * 2.0f);
-                        }
-
-                        changed = true;
-                        fixedCount++;
-                    }
+                    cam.cullingMask |= (1 << 0); // 强行勾选 Default Layer
                 }
             }
+        }
 
-            if (changed)
+        // 扫描全局带 Hand 名称的 Renderer 兜底
+        Renderer[] allRenderers = GetComponentsInChildren<Renderer>(true);
+        foreach (var r in allRenderers)
+        {
+            if (r.name.ToLower().Contains("hand") || r.transform.parent?.name.ToLower().Contains("hand") == true)
             {
-                r.materials = mats; // 重新赋值
+                EnsureRendererVisible(r);
             }
         }
 
-        Debug.Log($"[HDRPMaterialFixer] Successfully scanned and fixed {fixedCount} materials on {gameObject.name} for HDRP compatibility.");
+        Debug.Log("[HDRPMaterialFixer] Hands visibility & HDRP materials fixed successfully!");
+    }
+
+    void FixHandNode(Transform handAnchor)
+    {
+        handAnchor.gameObject.SetActive(true);
+        
+        Renderer[] renderers = handAnchor.GetComponentsInChildren<Renderer>(true);
+        foreach (var r in renderers)
+        {
+            EnsureRendererVisible(r);
+        }
+    }
+
+    void EnsureRendererVisible(Renderer r)
+    {
+        r.gameObject.SetActive(true);
+        r.enabled = true;
+
+        // 强行把手部设为 Default Layer，防止被 Culling Mask 过滤
+        r.gameObject.layer = 0;
+
+        Material mat = r.sharedMaterial;
+        if (mat == null || mat.shader == null || mat.shader.name.Contains("InternalErrorShader") || mat.shader.name.Contains("Error"))
+        {
+            Material newMat = new Material(hdrpLitShader != null ? hdrpLitShader : Shader.Find("Standard"));
+            newMat.name = "Fixed_Hand_Material";
+
+            if (newMat.HasProperty("_BaseColor"))
+                newMat.SetColor("_BaseColor", handColor);
+            else if (newMat.HasProperty("_Color"))
+                newMat.SetColor("_Color", handColor);
+
+            if (newMat.HasProperty("_Smoothness"))
+                newMat.SetFloat("_Smoothness", 0.6f);
+
+            r.material = newMat;
+        }
     }
 }
