@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 全套 VRPlayer 根节点与绑定的双手硬重建/注入器
-/// 自动重建 VRPlayer 根物体，重构 OVRCameraRig 与双手 (LeftHandAnchor / RightHandAnchor)，
-/// 并挂载 VRPlayerRig 行为控制、HDRP 材质修复与双手输入，直接 SaveScene 保存写入 Demonstration.unity YAML!
+/// 自动重建 VRPlayer 根物体，重构 OVRCameraRig 与双手模型 (LeftHandAnchor / RightHandAnchor)，
+/// 恢复最原始丝滑连续平滑旋转视角逻辑，并挂载 HDRP 材质修复与双手输入，直接 SaveScene 保存写入 Demonstration.unity YAML!
 /// </summary>
 [InitializeOnLoad]
 public class AutoSceneInjector
@@ -47,11 +47,9 @@ public class AutoSceneInjector
         var cameraRig = Object.FindObjectOfType<OVRCameraRig>();
         if (cameraRig == null)
         {
-            // 尝试在场景中生成 OVRCameraRig
             GameObject cameraRigObj = new GameObject("OVRCameraRig");
             cameraRig = cameraRigObj.AddComponent<OVRCameraRig>();
             
-            // 构建 TrackingSpace 层级
             GameObject trackingSpace = new GameObject("TrackingSpace");
             trackingSpace.transform.SetParent(cameraRigObj.transform, false);
 
@@ -69,11 +67,14 @@ public class AutoSceneInjector
             isModified = true;
         }
 
+        // 建立/保底手部 Visual 模型 (确保双手 100% 显形)
+        EnsureHandVisual(cameraRig.leftHandAnchor, "CustomHandLeft");
+        EnsureHandVisual(cameraRig.rightHandAnchor, "CustomHandRight");
+
         // 3. 彻底重构并恢复【VRPlayer 根节点与绑定的双手】
         GameObject playerRoot = GameObject.Find("VRPlayer");
         if (playerRoot == null)
         {
-            // 如果 OVRCameraRig 的父节点不是 VRPlayer，新建 VRPlayer 根物体
             if (cameraRig.transform.parent != null && cameraRig.transform.parent.name.Equals("VRPlayer"))
             {
                 playerRoot = cameraRig.transform.parent.gameObject;
@@ -88,7 +89,6 @@ public class AutoSceneInjector
             }
         }
 
-        // 给 VRPlayer 挂载 CharacterController
         var characterController = playerRoot.GetComponent<CharacterController>();
         if (characterController == null)
         {
@@ -102,7 +102,6 @@ public class AutoSceneInjector
         characterController.stepOffset = 0.5f;
         characterController.slopeLimit = 85f;
 
-        // 给 VRPlayer 挂载 VRPlayerRig 行走与平滑旋转逻辑
         var playerRig = playerRoot.GetComponent<VRPlayerRig>();
         if (playerRig == null)
         {
@@ -114,20 +113,21 @@ public class AutoSceneInjector
         serializedRig.FindProperty("cameraRig").objectReferenceValue = cameraRig;
         serializedRig.ApplyModifiedProperties();
 
-        // 挂载 HDRP 材质修复器 (确保双手显形)
-        if (cameraRig.GetComponent<HDRPMaterialFixer>() == null)
+        // 挂载 HDRP 材质修复器 (确保双手显形，材料不发黑不发紫)
+        var fixer = cameraRig.GetComponent<HDRPMaterialFixer>();
+        if (fixer == null)
         {
-            cameraRig.gameObject.AddComponent<HDRPMaterialFixer>();
+            fixer = cameraRig.gameObject.AddComponent<HDRPMaterialFixer>();
             isModified = true;
         }
+        fixer.FixMaterials();
 
-        // 绑定双手 Anchor 给 InputManager
         if (inputMgr != null && cameraRig != null)
         {
             inputMgr.SetHandAnchors(cameraRig.leftHandAnchor, cameraRig.rightHandAnchor);
         }
 
-        // 4. 重建/确保 Patient 人体模型节点 (包含医学专家 3D 对话面板)
+        // 4. 患者人体受害者节点与 3D 情景对话框
         GameObject patientObj = GameObject.Find("Patient");
         if (patientObj == null)
         {
@@ -146,7 +146,7 @@ public class AutoSceneInjector
             isModified = true;
         }
 
-        // 5. 重载 CPR 按压黄金区间训练管理器
+        // 5. CPR 按压黄金区间训练管理器
         var cprMgr = Object.FindObjectOfType<CPRTrainingManager>();
         if (cprMgr == null)
         {
@@ -156,12 +156,28 @@ public class AutoSceneInjector
             isModified = true;
         }
 
-        // 保存变动，强制持久化写进 Demonstration.unity YAML 文本！
         if (isModified)
         {
             EditorSceneManager.MarkSceneDirty(activeScene);
             EditorSceneManager.SaveScene(activeScene);
-            Debug.Log("[AutoSceneInjector] Successfully reconstructed VRPlayer, Hands & CPR Entities in Demonstration.unity!");
+            Debug.Log("[AutoSceneInjector] Rebuilt VRPlayer, Hands & restored smooth VR rotation!");
+        }
+    }
+
+    static void EnsureHandVisual(Transform handAnchor, string handName)
+    {
+        if (handAnchor == null) return;
+
+        Transform handChild = handAnchor.Find(handName);
+        if (handChild == null && handAnchor.childCount == 0)
+        {
+            GameObject handObj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            handObj.name = handName;
+            handObj.transform.SetParent(handAnchor, false);
+            handObj.transform.localScale = new Vector3(0.08f, 0.08f, 0.15f); // 优雅手部造型占位体
+            
+            var col = handObj.GetComponent<Collider>();
+            if (col != null) col.isTrigger = true;
         }
     }
 }
