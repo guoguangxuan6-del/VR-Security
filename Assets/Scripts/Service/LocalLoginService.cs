@@ -51,8 +51,19 @@ public class LocalLoginService : ILoginService
         return Task.FromResult(new UserInfo
         {
             username = currentUser,
-            createdAt = "",
-            avatarUrl = PlayerPrefs.GetString("avatar_url", "")
+            createdAt = ""
+        });
+    }
+
+    public Task<UserProfile> GetProfileAsync()
+    {
+        return Task.FromResult(new UserProfile
+        {
+            username = currentUser,
+            realName = currentUser,
+            avatar = PlayerPrefs.GetString("avatar_url", ""),
+            gender = 0,
+            createdAt = ""
         });
     }
 

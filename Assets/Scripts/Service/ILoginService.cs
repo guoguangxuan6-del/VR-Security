@@ -25,4 +25,7 @@ public interface ILoginService
 
     /// <summary>获取当前用户信息（包含头像 URL）</summary>
     Task<UserInfo> GetUserInfoAsync();
+
+    /// <summary>获取个人信息（真实姓名、头像、班级等）</summary>
+    Task<UserProfile> GetProfileAsync();
 }

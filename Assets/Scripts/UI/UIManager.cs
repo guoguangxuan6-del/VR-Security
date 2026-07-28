@@ -92,7 +92,20 @@ public class UIManager : MonoBehaviour
 
         if (panelHistory.Count > 0)
         {
-            currentPanelName = panelHistory.Pop();
+            string targetPanel = panelHistory.Pop();
+            
+            // 防御性检查：如果目标面板是 Lobby 但用户未登录，改为 Home
+            if (targetPanel == "Lobby")
+            {
+                var loginService = ServiceLocator.Instance?.LoginService;
+                if (loginService == null || !loginService.IsLoggedIn)
+                {
+                    targetPanel = "Home";
+                    panelHistory.Clear();
+                }
+            }
+            
+            currentPanelName = targetPanel;
             ShowPanel(currentPanelName);
         }
         else
@@ -122,7 +135,16 @@ public class UIManager : MonoBehaviour
     void ShowPanel(string panelName)
     {
         if (hologramTerminal == null) return;
+        isAnimating = true;
         hologramTerminal.ShowPanel(panelName);
+    }
+
+    /// <summary>
+    /// 由 HologramTerminal 在动画完成时调用
+    /// </summary>
+    public void OnPanelAnimationComplete()
+    {
+        isAnimating = false;
     }
 
     // ═══════════════════════════════════════════════════════════════

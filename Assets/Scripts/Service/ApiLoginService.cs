@@ -47,6 +47,18 @@ public class ApiLoginService : ApiClient, ILoginService
         currentUser = "";
     }
 
+    public async Task<UserProfile> GetProfileAsync()
+    {
+        var resp = await GetAsync<UserProfile>("/api/v1/profile", requireAuth: true);
+
+        if (resp != null && resp.code == 200 && resp.data != null)
+        {
+            return resp.data;
+        }
+        Debug.LogWarning($"[ApiLoginService] GetProfile failed: {resp?.message}");
+        return null;
+    }
+
     public async Task<UserInfo> GetUserInfoAsync()
     {
         var resp = await GetAsync<UserInfo>("/api/v1/user/info", requireAuth: true);

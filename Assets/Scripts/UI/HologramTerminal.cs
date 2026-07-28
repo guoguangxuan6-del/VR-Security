@@ -252,6 +252,9 @@ public class HologramTerminal : MonoBehaviour
         }
 
         isAnimating = false;
+        
+        // 通知 UIManager 动画完成
+        UIManager.Instance?.OnPanelAnimationComplete();
     }
 
     public string GetCurrentPanelName() => currentPanel != null ? currentPanel.name.Replace("Panel","") : null;

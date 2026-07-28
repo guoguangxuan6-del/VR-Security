@@ -96,14 +96,30 @@ public class HomeMenuPanel : BasePanel
 
     async Task FetchAndDisplayAvatar()
     {
-        // 先尝试从后端获取最新用户信息
-        var userInfo = await loginService.GetUserInfoAsync();
-        if (userInfo != null && !string.IsNullOrEmpty(userInfo.avatarUrl))
+        // 从后端获取个人信息（含真实姓名和头像）
+        var profile = await loginService.GetProfileAsync();
+        if (profile != null)
         {
-            currentAvatarUrl = userInfo.avatarUrl;
-            PlayerPrefs.SetString(AvatarUrlKey, currentAvatarUrl);
-            PlayerPrefs.Save();
-            await LoadAndSetAvatarImage(currentAvatarUrl);
+            // 显示真实姓名
+            if (nicknameText != null && !string.IsNullOrEmpty(profile.realName))
+            {
+                nicknameText.text = profile.realName;
+            }
+
+            // 加载头像
+            if (!string.IsNullOrEmpty(profile.avatar))
+            {
+                // avatar 是相对路径，拼接完整 URL
+                string fullUrl = profile.avatar;
+                if (!fullUrl.StartsWith("http"))
+                {
+                    fullUrl = "http://123.57.30.132:8080" + fullUrl;
+                }
+                currentAvatarUrl = fullUrl;
+                PlayerPrefs.SetString(AvatarUrlKey, fullUrl);
+                PlayerPrefs.Save();
+                await LoadAndSetAvatarImage(fullUrl);
+            }
             return;
         }
 

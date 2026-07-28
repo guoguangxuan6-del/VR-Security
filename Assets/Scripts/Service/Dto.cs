@@ -96,16 +96,29 @@ public class ScoreSubmitRequest
     public string stepDetails;   // JSON 字符串
 }
 
-/// <summary>
-/// 当前用户信息
-/// </summary>
+/// <summary>个人信息（profile）</summary>
+[Serializable]
+public class UserProfile
+{
+    public int id;
+    public string username;
+    public string realName;
+    public string role;
+    public string avatar;       // 相对路径，如 /uploads/avatars/1_xxx.jpg
+    public int gender;          // 0=未知, 1=男, 2=女
+    public string phone;
+    public string studentId;
+    public string className;
+    public string createdAt;
+}
+
+/// <summary>当前用户信息（user/info 简化版）</summary>
 [Serializable]
 public class UserInfo
 {
     public int id;
     public string username;
     public string createdAt;
-    public string avatarUrl;    // 头像 URL（可能为 null 或空）
 }
 
 /// <summary>
