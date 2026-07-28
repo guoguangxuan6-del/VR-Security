@@ -48,3 +48,13 @@ Assets/Scripts/UI/LoginCanvasAnimator.cs
 Assets/Scripts/UI/LoginCanvasAnimator.cs.meta
 Assets/Scripts/UI/LoginSceneEffects.cs
 Assets/Scripts/UI/LoginSceneEffects.cs.meta
+
+# ===== Agent / 工具产物（兜底：避免污染仓库） =====
+.mimocode/
+.playwright-mcp/
+logs/
+evidence/
+fix-report.md
+# 被忽略资源目录散落的 .meta
+Assets/Screenshots.meta
+Assets/charite-university-hospital-operating-room.meta
